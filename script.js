@@ -1,0 +1,1 @@
+fetch("https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,JPY,EUR?960e428fdca399a09e41196327f5766b1f76aa979eec604f31318a4e0ac3f032")

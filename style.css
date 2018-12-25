@@ -1,0 +1,17 @@
+header{
+  display: flex;
+  justify-content: center;
+  background-color: gray;
+}
+
+.top-currencies{
+  border: 1px solid red;
+  background-color: grey;
+}
+
+.news-articles{
+  border: 1px solid blue;
+  background-color: grey;
+  display: flex;
+  justify-content: space-between;
+}
