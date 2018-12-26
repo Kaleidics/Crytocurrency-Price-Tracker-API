@@ -9,6 +9,20 @@ header{
   background-color: grey;
 }
 
+.icons{
+  width: 25px;
+}
+
+img{
+  width:200px;
+}
+
+.top-currencies{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between
+}
+
 .news-articles{
   border: 1px solid blue;
   background-color: grey;

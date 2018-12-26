@@ -12,47 +12,40 @@
     <header role="banner">
         <a href="#">Logo</a>
         <form class="search-bar">
-            <input type="text">
+            <input class="search-term" type="text" placeholder="Ticker Symbol">
+            <input class="search-ex" type="text" placeholder="Default: CCC Aggregate">
+            <select class="search-xxx" name="exchange">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="JPY">JPY</option>
+            </select>
             <input type="submit">
         </form>
     </header>
 
     <main role="main">
+        <div class="landing">
         <section>
-            <div class="top-currencies">
+                <table class="top-currencies">
+                    <tr>
+                        <th>Icon</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>High/Low</th>
+                    </tr>
+                </table>
+            </section>
 
-                <div class="number-1">
-                    <span>1. Crypto1</span>
-                    <span>Price</span>
-                    <span>high/low</span>
+            <section>
+                <div class="news-articles">
                 </div>
-
-                <div class="number-2">
-                    <span>2. Crypto2</span>
-                    <span>Price</span>
-                    <span>high/low</span>
-                </div>
-
-                <div class="number-3">
-                    <span>3. Crypto3</span>
-                    <span>Price</span>
-                    <span>high/low</span>
-                </div>
-
-            </div>
-        </section>
-
-        <section>
-            <div class="news-articles">
-                <div class="article-1">1</div>
-                <div class="article-2">2</div>
-                <div class="article-3">3</div>
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
 
 
-
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
 
