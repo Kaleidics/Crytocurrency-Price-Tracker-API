@@ -1,20 +1,53 @@
+html{
+  font-size: 10px;
+  font-family: "Helvetcia", sans-serif;
+}
+
 header{
   display: flex;
   justify-content: center;
   background-color: gray;
 }
-
+header .logo{
+  width: 15%;
+}
+header form{
+  width: 80%;
+}
 .top-currencies{
   border: 1px solid red;
   background-color: grey;
 }
 
-.icons{
-  width: 25px;
+
+tr{
+  display: flex;
+  background-color: white;
+  margin-bottom:2px;
+  font-size: 1.25rem;
 }
 
-img{
-  width:200px;
+td{
+  width:33.3%;
+}
+
+table{
+  margin: 20px 0;
+}
+.cName{
+  margin-left: 2%;
+}
+.icons{
+  width:5%;
+  margin-right:2%;
+}
+.price{
+  text-align: center;
+}
+
+.volume{
+  text-align:right;
+  margin-right: 2%;
 }
 
 .top-currencies{
@@ -23,9 +56,44 @@ img{
   justify-content: space-between
 }
 
+.news-articles article.article{
+  width: 33.3%;
+  border: 2px solid black;
+  margin-right:2%;
+}
+
+.news-articles article.article img{
+  width: 80%;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
 .news-articles{
   border: 1px solid blue;
   background-color: grey;
   display: flex;
   justify-content: space-between;
+}
+
+.landing{
+  display: flex;
+  flex-direction: column;
+}
+
+.upper-page{
+  display: flex;
+  justify-content: space-between;
+}
+.left-side{
+
+  background-color: red;
+}
+
+.right-side{
+
+  background-color:blue;
+
+}
+.btm-side{
+  background-color:green;
 }

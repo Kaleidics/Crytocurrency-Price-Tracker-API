@@ -7,11 +7,11 @@ const api_key2 = "3d4f6056ea124d38aff81d043310b2f2";
 
 
 // landing page generates the top ten cryptocurrencies and some stats
-function generateTopTen(){
-    const searchUrl = "https://min-api.cryptocompare.com/data/top/totalvolfull?limit=10&tsym=USD&api_key=";
+function generateTopTen() {
+    const searchUrl = "https://min-api.cryptocompare.com/data/top/totalvolfull?limit=10&tsym=USD&api_key=";//seperate query parameters
     const baseImageUrl = "https://www.cryptocompare.com/";
     const url = searchUrl + api_key1;
-    fetch(url)
+    return fetch(url)
         .then(response => {
             if (response.ok) {
                 return response.json();
@@ -22,10 +22,9 @@ function generateTopTen(){
             for( let i=0; i<responseJson.Data.length; i++){
                 $(".top-currencies").append(`
                 <tr>
-                    <td><img class="icons" src="${baseImageUrl}${responseJson.Data[i].CoinInfo.ImageUrl}"></td>
-                    <td>${responseJson.Data[i].CoinInfo.FullName}</td>
-                    <td>${responseJson.Data[i].DISPLAY.USD.PRICE}</td>
-                    <td>${responseJson.Data[i].DISPLAY.USD.HIGHDAY}/${responseJson.Data[i].DISPLAY.USD.LOWDAY}</td>
+                    <td class="cName"><img class="icons" src="${baseImageUrl}${responseJson.Data[i].CoinInfo.ImageUrl}">${responseJson.Data[i].CoinInfo.FullName}</td>
+                    <td class="price">${responseJson.Data[i].DISPLAY.USD.PRICE}</td>
+                    <td class="volume">${responseJson.Data[i].DISPLAY.USD.HIGHDAY}/${responseJson.Data[i].DISPLAY.USD.LOWDAY}</td>
                 </tr>
                 `);
             }
@@ -38,7 +37,7 @@ function generateTopTen(){
 function generateNews(){
     const searchUrl = "https://newsapi.org/v2/everything?q=cryptocurrency&apiKey=";
     const url = searchUrl + api_key2;
-    fetch(url)
+    return fetch(url)
         .then(response => {
             if (response.ok){
                 return response.json();
@@ -48,7 +47,7 @@ function generateNews(){
         .then(function (responseJson){
             for(let i=0; i<3;i++){
                 $(".news-articles").append(`
-                    <div class="article"><a href=${responseJson.articles[i].url}><span>${responseJson.articles[i].title}</span><span>${responseJson.articles[i].source.name}</span><img src=${responseJson.articles[i].urlToImage}></a></div>
+                    <article class="article"><a href="${responseJson.articles[i].url}"><span>${responseJson.articles[i].title}</span><span>${responseJson.articles[i].source.name}</span><img src="${responseJson.articles[i].urlToImage}"></a></article>
                     `)}
                 })
         .catch(error => console.log("generateNews failed"))
@@ -63,10 +62,35 @@ function formatQueryParams(params) {
     return queryItems.join('&');
 }
 
+
+function buildResultsLayout(){
+    $(".landing").append(`
+        <div class="upper-page">
+            <div class="left-side">
+                <div class="crypt-info">
+                    <div class="coin">0</div>
+                    <div class="market">1fffffffffffff</div>
+                    <div class="price">2</div>
+                    <div class="open24">3</div>
+                    <div class="high24">4</div>
+                    <div class="low24">5</div>
+                    <div class="change24">6</div>
+                    <div class="changeP24">7</div>
+                </div>
+            </div>
+            <div class="right-side">
+                <div class="tweets">00000000000000</div>
+            </div>
+        </div>
+         <div class="btm-side">111</div>
+    `)
+}
+//listen for search input submission and send to results page
 function registerEvents(){
     $(".search-bar").on("submit", function(event){
         event.preventDefault();
         $(".landing").empty();
+        buildResultsLayout();
 
         let searchTerm = ($(".search-term").val()).toUpperCase();
         console.log("search term", searchTerm);
@@ -83,7 +107,7 @@ function registerEvents(){
     })
 }
 
-
+//generates statistics from Custom Average endpoint
 function generateResults(search, exchange, currency){
     const searchUrl = "https://min-api.cryptocompare.com/data/generateAvg"
     if(exchange ===""){
@@ -108,7 +132,7 @@ function generateResults(search, exchange, currency){
         })
 
         .then(function (responseJson) {
-            console.log(search)
+
             console.log(responseJson.DISPLAY.PRICE)
         })
         .catch(error => console.log("1 error happened"));
@@ -128,8 +152,9 @@ function generateResultsMedia(search) {
         })
 
         .then(function (responseJson) {
-            console.log("12",typeof search)
             console.log("123", responseJson.Data[search].FullName)
+            $(".coin").append(`<span>${responseJson.Data[search].FullName}</span>`);
+            
         })
         .catch(error => console.log("1 error happened"));
 }
