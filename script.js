@@ -35,7 +35,7 @@ function generateTopTen() {
 
 // landing page generates 3 most recent news articles for cryptocurrency 
 function generateNews(){
-    const searchUrl = "https://newsapi.org/v2/everything?q=cryptocurrency&apiKey=";
+    const searchUrl = "https://newsapi.org/v2/everything?q=cryptocurrency+blockchain&apiKey=";
     const url = searchUrl + api_key2;
     return fetch(url)
         .then(response => {
@@ -45,9 +45,9 @@ function generateNews(){
         })
 
         .then(function (responseJson){
-            for(let i=0; i<3;i++){
+            for(let i=0; i<6;i++){
                 $(".news-articles").append(`
-                    <article class="article"><a href="${responseJson.articles[i].url}"><span>${responseJson.articles[i].title}</span><span>${responseJson.articles[i].source.name}</span><img src="${responseJson.articles[i].urlToImage}"></a></article>
+                    <article class="article"><a class="a-link" href="${responseJson.articles[i].url}"><span>${responseJson.articles[i].title}</span><span>${responseJson.articles[i].source.name}</span><img src="${responseJson.articles[i].urlToImage}"></a></article>
                     `)}
                 })
         .catch(error => console.log("generateNews failed"))
@@ -165,7 +165,14 @@ function generateResultsMedia(search) {
 
 
 
-
+window.onload = function(){
+    Particles.init({
+        selector:".background",
+        connectParticles: true,
+        maxParticles: 110,
+        speed:0.33
+    });
+};
 
 
 function documentReady(){

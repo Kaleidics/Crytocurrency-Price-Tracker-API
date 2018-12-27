@@ -3,26 +3,44 @@ html{
   font-family: "Helvetcia", sans-serif;
 }
 
+body{
+  max-width: 94%;
+  margin: 0 auto;
+  background-color: #262626;
+
+}
+
 header{
   display: flex;
-  justify-content: center;
-  background-color: gray;
+
+}
+header a{
+  width: 10%;
 }
 header .logo{
-  width: 15%;
+  width: 100%;
 }
 header form{
   width: 80%;
+  height: 10%
 }
-.top-currencies{
-  border: 1px solid red;
-  background-color: grey;
+.landing section h2{
+  margin-left:2%;
+  color:white;
 }
-
+.search-bar{
+  display: flex;
+  justify-content: center;
+}
+.main-table{
+  justify-content: space-between;
+  margin-left: 2%;
+  margin-right:2%;
+}
 
 tr{
   display: flex;
-  background-color: white;
+  color: white;
   margin-bottom:2px;
   font-size: 1.25rem;
 }
@@ -57,20 +75,25 @@ table{
 }
 
 .news-articles article.article{
+  font-size:1.5rem;
   width: 33.3%;
-  border: 2px solid black;
   margin-right:2%;
 }
-
+a.a-link{
+  color:white;
+}
 .news-articles article.article img{
   width: 80%;
   max-width: 80%;
   margin: 0 auto;
 }
 
+
+.a-link{
+  width:50px;
+}
 .news-articles{
-  border: 1px solid blue;
-  background-color: grey;
+
   display: flex;
   justify-content: space-between;
 }
@@ -96,4 +119,15 @@ table{
 }
 .btm-side{
   background-color:green;
+}
+
+
+
+
+.background{
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }

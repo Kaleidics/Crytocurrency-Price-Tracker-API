@@ -11,7 +11,7 @@
 
 <body>
     <header role="banner">
-        <a class="logo" href="#">Logo</a>
+        <a href="#"><img class="logo" src="https://i.imgur.com/JgI5Vgy.png"></a>
         <form class="search-bar">
             <input class="search-term" type="text" placeholder="Ticker Symbol">
             <input class="search-ex" type="text" placeholder="Default: CCC Aggregate">
@@ -27,8 +27,9 @@
     <main role="main">
         <div class="landing">
         <section>
+            <h2>Toplist by 24 Hour Volume Subscriptions</h2>
                 <table class="top-currencies">
-                    <tr>
+                    <tr class="main-table">
                         <th>Name</th>
                         <th>Price</th>
                         <th>High/Low</th>
@@ -44,6 +45,8 @@
     </main>
 
 
+    <canvas class="background"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.2/particles.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous"></script>
     <script src="script.js"></script>
