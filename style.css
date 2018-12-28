@@ -1,15 +1,21 @@
 html{
   font-size: 10px;
-  font-family: "Helvetcia", sans-serif;
+  font-family: 'Share Tech Mono', monospace;
+
 }
 
 body{
   max-width: 94%;
+  height: 100vh;
   margin: 0 auto;
   background-color: #262626;
-
+  box-sizing: border-box;
 }
-
+main{
+  height: 50%;
+  display: flex;
+  justify-content: center;
+}
 header{
   display: flex;
 
@@ -24,8 +30,45 @@ header form{
   width: 80%;
   height: 10%
 }
+
+legend{
+  color: white;
+  font-size: 1.8rem;
+
+}
+
+fieldset{
+  border: 0;
+}
+.nav-btns{
+  color: white;
+  font-size: 1.5rem;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  margin-top:2.8%;
+  cursor: pointer;
+}
+
+.nav-btn1, .nav-btn2{
+  margin-left:5%;
+  padding: 2%;
+}
+
+input[type=text]{
+  color: red;
+  background-color: #262626;
+}
+::placeholder{
+  color: #c6a307;
+  opacity: 0.7;
+}
+
+fieldset span{
+  font-size: 1.5rem;
+  color: white;
+}
 .landing section h2{
-  margin-left:2%;
   color:white;
 }
 .search-bar{
@@ -43,6 +86,12 @@ tr{
   color: white;
   margin-bottom:2px;
   font-size: 1.25rem;
+}
+
+.table-info{
+  padding-top:10px;
+  padding-bottom:10px;
+  border: 1px solid white;
 }
 
 td{
@@ -82,48 +131,24 @@ table{
 a.a-link{
   color:white;
 }
-.news-articles article.article img{
-  width: 80%;
-  max-width: 80%;
-  margin: 0 auto;
-}
-
 
 .a-link{
   width:50px;
 }
-.news-articles{
-
-  display: flex;
-  justify-content: space-between;
-}
 
 .landing{
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.upper-page{
-  display: flex;
-  justify-content: space-between;
-}
-.left-side{
-
-  background-color: red;
-}
-
-.right-side{
-
-  background-color:blue;
-
-}
-.btm-side{
-  background-color:green;
+.checktest{
+  color: white;
+  font-size: 1.5rem;
 }
 
 
-
-
+/* canvas styling */
 .background{
   position: absolute;
   display: block;

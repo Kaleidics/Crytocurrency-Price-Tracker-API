@@ -6,27 +6,32 @@
     <meta name="viewport" content="width=device-width">
     <title>repl.it</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
-    
+    <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
+
 </head>
 
 <body>
     <header role="banner">
         <a href="#"><img class="logo" src="https://i.imgur.com/JgI5Vgy.png"></a>
-        <form class="search-bar">
-            <input class="search-term" type="text" placeholder="Ticker Symbol">
-            <input class="search-ex" type="text" placeholder="Default: CCC Aggregate">
-            <select class="search-xxx" name="exchange">
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-                <option value="JPY">JPY</option>
-            </select>
-            <input type="submit">
-        </form>
+        <div class="nav-btns"><span class="nav-btn1">Top 10 Coins</span><span class="nav-btn2">All Coins</span></div>
     </header>
 
     <main role="main">
         <div class="landing">
-        <section>
+            <form class="search-bar">
+                <fieldset>
+                    <legend>Get some quick stats on a Cryptocurrency.</legend>
+                    <span>Ticker Symbol: </span><input class="search-term" type="text" placeholder="BTC">
+                    <span>Market: </span><input class="search-ex" type="text" placeholder="CCC Aggregate">
+                    <select class="search-xxx" name="exchange">
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="JPY">JPY</option>
+                    </select>
+                    <input type="submit">
+                </fieldset>
+            </form>
+        <!-- <section>
             <h2>Toplist by 24 Hour Volume Subscriptions</h2>
                 <table class="top-currencies">
                     <tr class="main-table">
@@ -35,12 +40,12 @@
                         <th>High/Low</th>
                     </tr>
                 </table>
-            </section>
+            </section> -->
 
-            <section>
+            <!-- <section>
                 <div class="news-articles">
                 </div>
-            </section>
+            </section> -->
         </div>
     </main>
 
