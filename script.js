@@ -108,7 +108,7 @@ function registerEvents(){
     $(".search-bar").on("submit", function(event){
         event.preventDefault();
         
-        let searchTerm = ($(".search-term").val().toUpperCase());
+        let searchTerm = (($(".search-term").val()).toUpperCase());
         console.log("search term", searchTerm);
 
         let searchMarket = $(".search-ex").val();
