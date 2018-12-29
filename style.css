@@ -15,9 +15,11 @@ main{
   height: 50%;
   display: flex;
   justify-content: center;
+  margin: 1vh;
 }
 header{
   display: flex;
+  margin: 1vh;
 
 }
 header a{
