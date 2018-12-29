@@ -87,17 +87,22 @@ fieldset span{
   justify-content: center;
 }
 
-.search-term, .search-ex{
+.search-term, .search-ex, .search-xxx, .search-btn{
   border: 2px solid rgba(198, 163, 7);
   border-radius: 5px;
   height: 5vh;
+  background-color: #262626;
+  color: red;
 }
 .main-table{
   justify-content: space-between;
   margin-left: 2%;
   margin-right:2%;
 }
-
+.about-page{
+  color: white;
+  font-size: 1.5rem;
+}
 tr{
   display: flex;
   color: white;
@@ -162,6 +167,10 @@ a.a-link{
 .checktest{
   color: white;
   font-size: 1.5rem;
+}
+
+.search-btn{
+  cursor: pointer;
 }
 
 
