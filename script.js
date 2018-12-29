@@ -204,8 +204,10 @@ function reloadPage(){
 window.onload = function(){
     Particles.init({
         selector:".background",
+        color: "#c6a307",
         connectParticles: true,
-        maxParticles: 110,
+        maxParticles: 160,
+        minDistance: 90,
         speed:0.33
     });
 };
