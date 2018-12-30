@@ -1,11 +1,11 @@
 html{
-  font-size: 10px;
+  font-size: 1vh;
   font-family: 'Share Tech Mono', monospace;
 
 }
 
 body{
-  max-width: 94%;
+  max-width: 98%;
   height: 100vh;
   margin: 0 auto;
   background-color: #262626;
@@ -25,11 +25,7 @@ header a{
   width: 15vh;
 }
 header .logo{
-  width: 100%;
-}
-header form{
-  width: 80%;
-  height: 10%
+  width: 12vh;
 }
 
 legend{
@@ -55,11 +51,11 @@ fieldset *{
   width: 80vh;
   display: flex;
   align-items: center;
-  margin-top:2.8%;
+  margin: 1vh;
 }
 
 .nav-btn1, .nav-btn2, .about-btn{
-  margin-left:5%;
+  margin-left: 1vh;
   padding: 2vh 2vh 1vh 2vh;
   cursor: pointer;
 
@@ -101,7 +97,7 @@ fieldset span{
   text-transform: uppercase;
 }
 .search-term, .search-ex, .search-xxx, .search-btn{
-  border: 2px solid rgba(198, 163, 7);
+  border: 0.2vh solid rgba(198, 163, 7);
   border-radius: 5px;
   height: 5vh;
   background-color: #262626;
@@ -109,9 +105,8 @@ fieldset span{
 }
 .main-table{
   justify-content: space-between;
-  margin-left: 2%;
-  margin-right:2%;
 }
+
 .about-page{
   color: white;
   font-size: 1.5rem;
@@ -119,31 +114,29 @@ fieldset span{
 tr{
   display: flex;
   color: white;
-  margin-bottom:2px;
   font-size: 1.5rem;
   margin-bottom: 1vh;
-  border-radius: 5px;
+  border-radius: 0.5vh;
 
 }
 
 .table-info{
-  padding-top:10px;
-  padding-bottom:10px;
-  border: 1px solid white;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  border: 0.1vh solid white;
+  cursor: pointer;
 }
 
 td{
-  width:33.3%;
+  width:100%;
+  max-width: 100%;
 }
 
-table{
-  margin: 20px 0;
-}
 .cName{
   margin-left: 2%;
 }
 .icons{
-  width:10%;
+  width:8%;
   margin-right:2%;
 }
 .price{
@@ -161,25 +154,6 @@ table{
   justify-content: space-between
 }
 
-.news-articles article.article{
-  font-size:1.5rem;
-  width: 33.3%;
-  margin-right:2%;
-}
-a.a-link{
-  color:white;
-}
-
-.a-link{
-  width:50px;
-}
-
-.landing{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .search-results{
   color: white;
   font-size: 1.5rem;
@@ -189,7 +163,16 @@ a.a-link{
   cursor: pointer;
 }
 
+.no-data{
+  font-size: 1.5rem;
+  color: white;
+}
 
+.back-btn{
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: white;
+}
 /* canvas styling */
 .background{
   position: absolute;
