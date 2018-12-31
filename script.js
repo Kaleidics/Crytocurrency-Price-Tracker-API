@@ -143,7 +143,7 @@ function generateTopTen() {
             for (let i=0; i<responseJson.Data.length; i++) {
                 tableitems = tableitems.concat(`
                 <tr class="table-info" id="${responseJson.Data[i].CoinInfo.Name}">
-                    <td class="cName"><img class="icons" src="${baseImageUrl}${responseJson.Data[i].CoinInfo.ImageUrl}">${responseJson.Data[i].CoinInfo.FullName}</td>
+                    <td class="cName"><a href="#"><img class="icons" src="${baseImageUrl}${responseJson.Data[i].CoinInfo.ImageUrl}">${responseJson.Data[i].CoinInfo.FullName}</a></td>
                     <td class="price">${responseJson.Data[i].DISPLAY.USD.PRICE}</td>
                     <td class="volume">${responseJson.Data[i].DISPLAY.USD.HIGHDAY}/${responseJson.Data[i].DISPLAY.USD.LOWDAY}</td>
                 </tr>`);
@@ -195,16 +195,16 @@ function generateQuantity(arr) {
     for (let i=pageCounter; i<pageCounter+20; i++) {
         tableitems2 = tableitems2.concat(`
         <tr class="table-info" id="${arr[i].Name}">
-            <td><img class = "icons" src="${baseImageUrl}${arr[i].ImageUrl}">${arr[i].FullName}</td>
+            <td><a href="#"><img class = "icons" src="${baseImageUrl}${arr[i].ImageUrl}">${arr[i].FullName}</a></td>
             </tr>`);
     }
 
     if (pageCounter === 0) {
     $(".all-currencies").hide().fadeIn().html(tableitems2);
-    $(".all-currencies").hide().fadeIn().append(`<div><span class="next-load">Next -></span></div>`);
+    $(".all-currencies").hide().fadeIn().append(`<div><a href="#" class="next-load">Next -></a></div>`);
     } else {
         $(".all-currencies").hide().fadeIn().append(tableitems2);
-        $(".all-currencies").hide().fadeIn().append(`<div class="index-nav"><span class="previous-load"><- Previous </span><span class="next-load"> Next -></span></div>`);
+        $(".all-currencies").hide().fadeIn().append(`<div class="index-nav"><a href="#" class="previous-load"><- Previous </a><a href="#" class="next-load"> Next -></a></div>`);
     }
     window.scrollTo(0,0);
     
@@ -246,7 +246,7 @@ function registerEvents(){
 
         $(".landing").empty();
         $(".landing").html(`<div class="refresh"><- Back</div>`)
-        generateResultsMedia(searchTerm);// only gives the name
+        generateResultsMedia(searchTerm);// endpoint that only gives the name
         generateResults(searchTerm, searchMarket, fCurrency);
 
         
@@ -285,6 +285,7 @@ function generateResults(search, exchange, currency) {
             if(backEnabled === true){
             $(".landing").append(`<div class="back-btn"><- Back</div>`);}
             if (responseJson.DISPLAY.PRICE !== undefined){
+                alert("generateResults fired")
             $(".landing").append(`<table class="search-results"></table>`);
             $(".search-results").append(`
                 <tr><td>Price: ${responseJson.DISPLAY.PRICE}</td></tr>
@@ -317,8 +318,9 @@ function generateResultsMedia(search) {
         })
 
         .then(function (responseJson) {
-            console.log("generateResultsMedia fired:", responseJson.Data[search].FullName)
-            $(".search-results").append(`<tr><th>${responseJson.Data[search].FullName}</th></tr>`);
+            console.log("generateResultsMedia fired:", responseJson.Data[search].FullName);
+            alert(responseJson.Data[search].FullName);
+            $(".search-results").append(`<tr><td>${responseJson.Data[search].FullName}</td></tr>`);
             
         })
         .catch(error => console.log(error));
