@@ -285,7 +285,6 @@ function generateResults(search, exchange, currency) {
             if(backEnabled === true){
             $(".landing").append(`<div class="back-btn"><- Back</div>`);}
             if (responseJson.DISPLAY.PRICE !== undefined){
-                alert("generateResults fired")
             $(".landing").append(`<table class="search-results"></table>`);
             $(".search-results").append(`
                 <tr><td>Price: ${responseJson.DISPLAY.PRICE}</td></tr>
@@ -319,7 +318,6 @@ function generateResultsMedia(search) {
 
         .then(function (responseJson) {
             console.log("generateResultsMedia fired:", responseJson.Data[search].FullName);
-            alert(responseJson.Data[search].FullName);
             $(".search-results").append(`<tr><td>${responseJson.Data[search].FullName}</td></tr>`);
             
         })
