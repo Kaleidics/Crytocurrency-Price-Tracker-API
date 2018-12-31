@@ -6,6 +6,7 @@ const api_key1 ="960e428fdca399a09e41196327f5766b1f76aa979eec604f31318a4e0ac3f03
 let dataArray;
 //counter for All Coins page's index in the array dataArray
 let pageCounter = 0;
+//boolean to switch on/off back button
 let backEnabled = false;
 
 //formats parameters for urls
@@ -30,6 +31,13 @@ window.onload = function () {
 //event for clicking "CryptOracle logo"
 function reloadPage() {
     $(".logo").on("click", function () {
+        location.reload();
+    });
+
+}
+
+function reloadSearch() {
+    $(".landing").on("click", ".refresh", function () {
         location.reload();
     });
 
@@ -199,7 +207,7 @@ function generateQuantity(arr) {
     }
 
     if (pageCounter === 0) {
-    $(".all-currencies").hide().fadeIn().append(tableitems2);
+    $(".all-currencies").hide().fadeIn().html(tableitems2);
     $(".all-currencies").hide().fadeIn().append(`<div><span class="next-load">Next -></span></div>`);
     } else {
         $(".all-currencies").hide().fadeIn().append(tableitems2);
@@ -244,7 +252,7 @@ function registerEvents(){
         console.log("fcurrecny", fCurrency);
 
         $(".landing").empty();
-
+        $(".landing").html(`<div class="refresh"><- Back</div>`)
         generateResultsMedia(searchTerm);// only gives the name
         generateResults(searchTerm, searchMarket, fCurrency);
 
@@ -326,6 +334,7 @@ function generateResultsMedia(search) {
 function documentReady() {
     registerEvents();
     registerNavbtnI();
+    reloadSearch();
     registerNavbtnII();
     loadNextCoins();
     loadPreviousCoins();
