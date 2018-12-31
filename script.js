@@ -161,6 +161,7 @@ function coinDetail(){
         $(".landing").empty();
         let coinName = $(event.currentTarget).attr("id");
         console.log("value",coinName);
+        generateResultsMedia(coinName);
         generateResults(coinName,"","USD");
     });
 }
@@ -182,20 +183,12 @@ function generateAllCoins() {
             }
             console.log("made it to generateQ");
             generateQuantity(dataArray);
-
-            // for (let i = 0; i < 20; i++) {
-            //      $(".all-currencies").append(`
-            //     <tr class="table-info">
-            //         <td class="cName"><img class="icons" src="${baseImageUrl}${responseJson.Data[i].ImageUrl}">${responseJson.Data[i].FullName}</td>
-            //     </tr>
-            //     `   console.log("made it to loop generateAllCoins");
-            // );
-            // }
         })
         .catch(error => console.log("generateAllCoins failed",error));
 
 }
 
+//generates list of All Coins by passing in array of objects from generateAllCoins
 function generateQuantity(arr) {
     let tableitems2 = "";
     const baseImageUrl = "https://www.cryptocompare.com/";
@@ -324,7 +317,7 @@ function generateResultsMedia(search) {
         })
 
         .then(function (responseJson) {
-            console.log("generate Results fired:", responseJson.Data[search].FullName)
+            console.log("generateResultsMedia fired:", responseJson.Data[search].FullName)
             $(".search-results").append(`<tr><th>${responseJson.Data[search].FullName}</th></tr>`);
             
         })
