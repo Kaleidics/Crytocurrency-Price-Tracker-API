@@ -1,54 +1,32 @@
-html{
+html {
   font-size: 1vh;
   font-family: 'Share Tech Mono', monospace;
 
 }
 
-body{
+body {
   max-width: 98%;
   height: 100vh;
   margin: 0 auto;
   background-color: #262626;
   box-sizing: border-box;
 }
-main{
-  display: flex;
-  justify-content: center;
-  margin: 1vh;
-}
-header{
-  display: flex;
-  margin: 1vh;
 
+/* header styles///////////////////////////////////////////////////////////////////////////*/
+header {
+  display: flex;
+  margin: 1vh;
 }
-header a{
+
+header a {
   width: 15vh;
 }
-header .logo{
+
+header .logo {
   width: 12vh;
 }
 
-legend{
-  color: white;
-  font-size: 1.8rem;
-
-}
-a{
-  color: white;
-  text-decoration: none;
-}
-fieldset{
-  border: 0;
-  display: flex;
-  justify-content: center;
-}
-fieldset *{
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-  margin-bottom:2vh;
-}
-.nav-btns{
+.nav-btns {
   color: white;
   font-size: 1.5rem;
   width: 80vh;
@@ -57,127 +35,192 @@ fieldset *{
   margin: 1vh;
 }
 
-.nav-btn1, .nav-btn2, .about-btn{
+.nav-btn1, .nav-btn2, .about-btn {
   margin-left: 1vh;
   padding: 2vh 2vh 1vh 2vh;
   cursor: pointer;
 
 }
 
-.hidden{
-  display: none;
+main {
+  display: flex;
+  justify-content: center;
+  margin: 1vh;
 }
-input[type=text]{
-  color: red;
-  background-color: #262626;
-}
-::placeholder{
-  color: #c6a307;
-  opacity: 0.7;
-}
-.previous-load, .next-load{
-  font-size: 1.5rem;
+
+legend {
   color: white;
-  cursor: pointer;
+  font-size: 1.8rem;
+
 }
-fieldset span{
-  font-size: 1.5rem;
+a{
   color: white;
+  text-decoration: none;
 }
-.landing section h2{
-  color:white;
-}
-.search-bar{
+/* //////////////////////////////////////////////////////////////////////////////////// */
+/* landing page search styles//////////////////////////////////////////////////////////*/
+.search-bar {
+  width: 100%;
   display: flex;
   justify-content: center;
 }
 
-.index-nav{
+fieldset {
+  width: 80%;
+  border: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
-.search-term{
-  text-transform: uppercase;
+fieldset * {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom:2vh;
 }
-.search-term, .search-ex, .search-xxx, .search-btn{
-  border: 0.2vh solid rgba(198, 163, 7);
+
+.hidden {
+  display: none;
+}
+input[type=text] {
+  font-size: 2.0rem;
+  color: rgb(255, 0, 0);
+  background-color: #262626;
+}
+::placeholder {
+  color: #c6a307;
+  opacity: 0.7;
+}
+
+.search-term, .search-ex, .search-xxx, .search-btn {
+  width: 50%;
+  border: 0.2vh solid rgb(178, 143, 7);
   border-radius: 5px;
   height: 5vh;
   background-color: #262626;
   color: red;
 }
-.main-table{
+
+fieldset span {
+  width: 100%;
+  font-size: 1.5rem;
+  color: white;
+}
+
+select{
+    text-align-last:center;
+}
+
+.search-term {
+  text-transform: uppercase;
+}
+/* /////////////////////////////////////////////////////////////////////////////////// */
+
+
+.landing {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+}
+.landing section h2 {
+  color:white;
+}
+
+
+/* All Coins page nav styles /////////////////////////////////////////////////////////*/
+.previous-load, .next-load {
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+.index-nav {
+  display: flex;
+  justify-content: space-between;
+}
+/* /////////////////////////////////////////////////////////////////////////////////// */
+section.all-currencies {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
+.all-currencies {
+  width: 66.6%;
+}
+.main-table {
   justify-content: space-between;
 }
 
-.about-page{
+.about-page {
   color: white;
   font-size: 1.5rem;
 }
-tr{
+tr {
   display: flex;
   color: white;
   font-size: 1.5rem;
   margin-bottom: 1vh;
   border-radius: 0.5vh;
-
 }
 
-.table-info{
+.table-info {
   padding-top: 1vh;
   padding-bottom: 1vh;
   border: 0.1vh solid white;
   cursor: pointer;
 }
 
-td{
+td {
   width:100%;
   max-width: 100%;
 }
 
-.cName{
+.cName {
   margin-left: 2%;
 }
-.icons{
+
+.icons {
   width:8%;
   margin-right:2%;
 }
-.price{
+
+.price {
   text-align: center;
 }
 
-.volume{
+.volume {
   text-align:right;
   margin-right: 2%;
 }
 
-.top-currencies{
+.top-currencies {
   display: flex;
   flex-direction: column;
   justify-content: space-between
 }
 
-.search-results{
+.search-results {
+  margin: 0 auto;
   color: white;
   font-size: 1.5rem;
 }
 
-.search-btn{
+.search-btn {
   cursor: pointer;
 }
 
-.no-data{
+.no-data {
   font-size: 1.5rem;
   color: white;
 }
 
-.back-btn, .refresh{
+.back-btn, .refresh {
   cursor: pointer;
   font-size: 1.5rem;
   color: white;
 }
+
 /* canvas styling */
-.background{
+.background {
   position: absolute;
   display: block;
   top: 0;

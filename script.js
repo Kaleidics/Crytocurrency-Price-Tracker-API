@@ -109,7 +109,7 @@ function generateTopTenLayout() {
 //generates html elements for generateAllCoins() to append future td's
 function generateAllCoinsLayout() {
     $(".landing").hide().fadeIn().html(`
-        <section>
+        <section class="all-coins">
             <h2>All Coins</h2>
                 <table class="all-currencies">
                     <tr class="main-table">
@@ -245,7 +245,7 @@ function registerEvents(){
         console.log("fcurrecny", fCurrency);
 
         $(".landing").empty();
-        $(".landing").html(`<div class="refresh"><- Back</div>`)
+        $(".landing").html(`<div class="refresh"><a href="#"><- Back</a></div>`)
         generateResultsMedia(searchTerm);// endpoint that only gives the name
         generateResults(searchTerm, searchMarket, fCurrency);
 
@@ -283,18 +283,19 @@ function generateResults(search, exchange, currency) {
 
         .then(function (responseJson) {
             if(backEnabled === true){
-            $(".landing").append(`<div class="back-btn"><- Back</div>`);}
+            $(".landing").append(`<div class="back-btn"><a href="#"><- Back</a></div>`);}
             if (responseJson.DISPLAY.PRICE !== undefined){
             $(".landing").append(`<table class="search-results"></table>`);
             $(".search-results").append(`
+                <tr><td>Market: ${responseJson.DISPLAY.MARKET}</td></tr>
                 <tr><td>Price: ${responseJson.DISPLAY.PRICE}</td></tr>
-                <tr><td>Open24: ${responseJson.DISPLAY.OPEN24HOUR}</td></tr>
-                <tr><td>High24: ${responseJson.DISPLAY.HIGH24HOUR}</td></tr>
-                <tr><td>Low24: ${responseJson.DISPLAY.LOW24HOUR}</td></tr>
-                <tr><td>Change24: ${responseJson.DISPLAY.CHANGE24HOUR}</td></tr>
-                <tr><td>ChangePercent: ${responseJson.DISPLAY.CHANGEPCT24HOUR}%</td></tr>
+                <tr><td>Open 24 Hour: ${responseJson.DISPLAY.OPEN24HOUR}</td></tr>
+                <tr><td>High 24 Hour: ${responseJson.DISPLAY.HIGH24HOUR}</td></tr>
+                <tr><td>Low 24 Hour: ${responseJson.DISPLAY.LOW24HOUR}</td></tr>
+                <tr><td>Change 24 Hour: ${responseJson.DISPLAY.CHANGE24HOUR}</td></tr>
+                <tr><td>Change Percent 24 Hour: ${responseJson.DISPLAY.CHANGEPCT24HOUR}%</td></tr>
             `)} else{
-                $(".landing").append(`<div class="no-data">No Data</div>`)
+                $(".back-btn").append(`<div class="no-data"><h2>No Data</h2></div>`)
             }
         })
         .catch(error => console.log("1 error happened"));
