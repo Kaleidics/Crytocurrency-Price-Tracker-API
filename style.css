@@ -4,18 +4,26 @@ html {
 
 }
 
+/*clearfix*/
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
 body {
-  max-width: 98%;
+  background-image: url("./assets/bg_hifi.png");
+  background-size: cover;
+  background-repeat: no-repeat;
   height: 100vh;
   margin: 0 auto;
-  background-color: #262626;
   box-sizing: border-box;
 }
 
 /* header styles///////////////////////////////////////////////////////////////////////////*/
 header {
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  margin: 1vh;
 }
 
 header a {
@@ -27,6 +35,7 @@ header .logo {
 }
 
 .nav-btns {
+  width: 33.3%;
   color: white;
   font-size: 1.5rem;
   width: 80vh;
@@ -92,12 +101,11 @@ input[type=text] {
 }
 
 .search-term, .search-ex, .search-xxx, .search-btn {
-  width: 50%;
-  border: 0.2vh solid rgb(178, 143, 7);
+  width: 33.3%;
   border-radius: 5px;
   height: 5vh;
   background-color: #262626;
-  color: red;
+  color: #C6A307;
 }
 
 fieldset span {
@@ -121,7 +129,9 @@ select{
   display: flex;
   justify-content: center;
 }
+
 .landing section h2 {
+  text-align: center;
   color:white;
 }
 
@@ -144,12 +154,26 @@ section.all-currencies {
   justify-content: center;
 }
 .all-currencies {
+  margin: 0 auto;
   width: 66.6%;
-}
-.main-table {
-  justify-content: space-between;
+  padding: 0;
 }
 
+.all-coins {
+  min-width: 80%;
+  max-width: 80%;
+}
+.main-table {
+  padding: 0;
+  font-size: 1.5rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+}
+ol {
+  list-style-type: none;
+}
 .about-page {
   color: white;
   font-size: 1.5rem;
@@ -163,10 +187,11 @@ tr {
 }
 
 .table-info {
-  padding-top: 1vh;
-  padding-bottom: 1vh;
+  padding: 1vh;
   border: 0.1vh solid white;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
 }
 
 td {
@@ -175,29 +200,36 @@ td {
 }
 
 .cName {
+  width: 33.3%;
   margin-left: 2%;
 }
 
 .icons {
-  width:8%;
+  width:12%;
   margin-right:2%;
 }
 
 .price {
+  width: 33.3%;
   text-align: center;
 }
 
 .volume {
   text-align:right;
   margin-right: 2%;
+  width: 33.3%;
 }
 
 .top-currencies {
   display: flex;
   flex-direction: column;
-  justify-content: space-between
+  justify-content: space-between;
+  list-style-type: none;
 }
-
+li {
+  color: white;
+  list-style-type: none;
+}
 .search-results {
   margin: 0 auto;
   color: white;
@@ -217,6 +249,7 @@ td {
   cursor: pointer;
   font-size: 1.5rem;
   color: white;
+  max-height: 10%;
 }
 
 /* canvas styling */

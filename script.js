@@ -20,7 +20,8 @@ function formatQueryParams(params) {
 window.onload = function () {
     Particles.init({
         selector: ".background",
-        color: "#c6a307",
+        sizeVariations: 5,
+        color: "#89CFF0",
         connectParticles: true,
         maxParticles: 160,
         minDistance: 90,
@@ -96,13 +97,13 @@ function generateTopTenLayout() {
     $(".landing").hide().fadeIn().html(`
         <section>
             <h2 class="hidden">Top Ten List by 24 Hour Volume Subscriptions</h2>
-                <table class="top-currencies">
-                    <tr class="main-table">
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>High/Low</th>
-                    </tr>
-                </table>
+                <ul class="top-currencies">
+                    <ul class="main-table">
+                        <li>Name</li>
+                        <li>Price</li>
+                        <li>24Hr High/Low</li>
+                    </ul>
+                </ul>
         </section>`)
 }
 
@@ -111,10 +112,10 @@ function generateAllCoinsLayout() {
     $(".landing").hide().fadeIn().html(`
         <section class="all-coins">
             <h2>All Coins</h2>
-                <table class="all-currencies">
-                    <tr class="main-table">
-                    </tr>
-                </table>
+                <ul class="all-currencies">
+                    <h3 class="main-table">
+                    </h3>
+                </ul>
         </section>`)
 }
 
@@ -142,11 +143,11 @@ function generateTopTen() {
             let tableitems = "";
             for (let i=0; i<responseJson.Data.length; i++) {
                 tableitems = tableitems.concat(`
-                <tr class="table-info" id="${responseJson.Data[i].CoinInfo.Name}">
-                    <td class="cName"><a href="#"><img class="icons" src="${baseImageUrl}${responseJson.Data[i].CoinInfo.ImageUrl}">${responseJson.Data[i].CoinInfo.FullName}</a></td>
-                    <td class="price">${responseJson.Data[i].DISPLAY.USD.PRICE}</td>
-                    <td class="volume">${responseJson.Data[i].DISPLAY.USD.HIGHDAY}/${responseJson.Data[i].DISPLAY.USD.LOWDAY}</td>
-                </tr>`);
+                <li class="table-info" id="${responseJson.Data[i].CoinInfo.Name}">
+                    <p class="cName"><a href="#"><img class="icons" src="${baseImageUrl}${responseJson.Data[i].CoinInfo.ImageUrl}">${responseJson.Data[i].CoinInfo.FullName}</a></p>
+                    <p class="price">${responseJson.Data[i].DISPLAY.USD.PRICE}</p>
+                    <p class="volume">${responseJson.Data[i].DISPLAY.USD.HIGHDAY}/${responseJson.Data[i].DISPLAY.USD.LOWDAY}</p>
+                </li>`);
             }
             $(".top-currencies").hide().fadeIn().append(tableitems);
             $("h2.hidden").removeClass("hidden");
@@ -157,7 +158,7 @@ function generateTopTen() {
 
 //on click redirect to more detail results
 function coinDetail(){
-    $(".landing").on("click", ".table-info", function(event){
+    $(".landing").on("click", "li.table-info", function(event){
         $(".landing").empty();
         let coinName = $(event.currentTarget).attr("id");
         console.log("value",coinName);
@@ -192,11 +193,10 @@ function generateAllCoins() {
 function generateQuantity(arr) {
     let tableitems2 = "";
     const baseImageUrl = "https://www.cryptocompare.com/";
-    for (let i=pageCounter; i<pageCounter+20; i++) {
+    for (let i=pageCounter; i<pageCounter+10; i++) {
         tableitems2 = tableitems2.concat(`
-        <tr class="table-info" id="${arr[i].Name}">
-            <td><a href="#"><img class = "icons" src="${baseImageUrl}${arr[i].ImageUrl}">${arr[i].FullName}</a></td>
-            </tr>`);
+            <li class="table-info" id="${arr[i].Name}"><a href="#"><img class = "icons" src="${baseImageUrl}${arr[i].ImageUrl}">${arr[i].FullName}</a></li>
+            `);
     }
 
     if (pageCounter === 0) {
@@ -214,7 +214,7 @@ function generateQuantity(arr) {
 function loadNextCoins() {
     $(".landing").on("click", ".next-load", function(event){
         $(".all-currencies").empty();
-        pageCounter = pageCounter + 20;
+        pageCounter = pageCounter + 10;
         generateQuantity(dataArray);
     })
 }
@@ -223,7 +223,7 @@ function loadNextCoins() {
 function loadPreviousCoins() {
     $(".landing").on("click", ".previous-load", function (event) {
         $(".all-currencies").empty();
-        pageCounter = pageCounter - 20;
+        pageCounter = pageCounter - 10;
         generateQuantity(dataArray);
     })
 }
@@ -285,15 +285,15 @@ function generateResults(search, exchange, currency) {
             if(backEnabled === true){
             $(".landing").append(`<div class="back-btn"><a href="#"><- Back</a></div>`);}
             if (responseJson.DISPLAY.PRICE !== undefined){
-            $(".landing").append(`<table class="search-results"></table>`);
+            $(".landing").append(`<ul class="search-results"></ul>`);
             $(".search-results").append(`
-                <tr><td>Market: ${responseJson.DISPLAY.MARKET}</td></tr>
-                <tr><td>Price: ${responseJson.DISPLAY.PRICE}</td></tr>
-                <tr><td>Open 24 Hour: ${responseJson.DISPLAY.OPEN24HOUR}</td></tr>
-                <tr><td>High 24 Hour: ${responseJson.DISPLAY.HIGH24HOUR}</td></tr>
-                <tr><td>Low 24 Hour: ${responseJson.DISPLAY.LOW24HOUR}</td></tr>
-                <tr><td>Change 24 Hour: ${responseJson.DISPLAY.CHANGE24HOUR}</td></tr>
-                <tr><td>Change Percent 24 Hour: ${responseJson.DISPLAY.CHANGEPCT24HOUR}%</td></tr>
+                <li>Market: ${responseJson.DISPLAY.MARKET}</li>
+                <li>Price: ${responseJson.DISPLAY.PRICE}</li>
+                <li>Open 24 Hour: ${responseJson.DISPLAY.OPEN24HOUR}</li>
+                <li>High 24 Hour: ${responseJson.DISPLAY.HIGH24HOUR}</li>
+                <li>Low 24 Hour: ${responseJson.DISPLAY.LOW24HOUR}</li>
+                <li>Change 24 Hour: ${responseJson.DISPLAY.CHANGE24HOUR}</li>
+                <li>Change Percent 24 Hour: ${responseJson.DISPLAY.CHANGEPCT24HOUR}%</li>
             `)} else{
                 $(".back-btn").append(`<div class="no-data"><h2>No Data</h2></div>`)
             }
@@ -319,7 +319,7 @@ function generateResultsMedia(search) {
 
         .then(function (responseJson) {
             console.log("generateResultsMedia fired:", responseJson.Data[search].FullName);
-            $(".search-results").append(`<tr><td>${responseJson.Data[search].FullName}</td></tr>`);
+            $(".search-results").append(`<li>${responseJson.Data[search].FullName}</li>`);
             
         })
         .catch(error => console.log(error));
