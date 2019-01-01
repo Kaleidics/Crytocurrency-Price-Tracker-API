@@ -110,10 +110,10 @@ input[type=text] {
   color: white;
 }
 .search-btn{
-  background-color: #147749;
+  background-color: #04548c;
 }
 .search-btn:hover{
-  background-color: #1fc175;
+  background-color: #0293f7;
 }
 fieldset span {
   width: 100%;
