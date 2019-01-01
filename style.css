@@ -26,10 +26,6 @@ header {
   display: flex;
 }
 
-header a {
-  width: 15vh;
-}
-
 header .logo {
   width: 12vh;
 }
@@ -45,16 +41,20 @@ header .logo {
 }
 
 .nav-btn1, .nav-btn2, .about-btn {
-  margin-left: 1vh;
-  padding: 2vh 2vh 1vh 2vh;
+  padding: 1.5em;
   cursor: pointer;
 
 }
+.nav-btn1:hover, .nav-btn2:hover, .about-btn:hover, .logo:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+   transform: scale(1.2);
 
+}
 main {
   display: flex;
   justify-content: center;
-  margin: 1vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
 }
 
 legend {
@@ -69,6 +69,7 @@ a{
 /* //////////////////////////////////////////////////////////////////////////////////// */
 /* landing page search styles//////////////////////////////////////////////////////////*/
 .search-bar {
+  height: 50%;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -92,11 +93,11 @@ fieldset * {
 }
 input[type=text] {
   font-size: 2.0rem;
-  color: rgb(255, 0, 0);
-  background-color: #262626;
+  color: white;
+  background-color: transparent;
 }
 ::placeholder {
-  color: #c6a307;
+  color: white;
   opacity: 0.7;
 }
 
@@ -104,10 +105,16 @@ input[type=text] {
   width: 33.3%;
   border-radius: 5px;
   height: 5vh;
-  background-color: #262626;
-  color: #C6A307;
+  background-color: transparent;
+  font-size: 1.5rem;
+  color: white;
 }
-
+.search-btn{
+  background-color: #147749;
+}
+.search-btn:hover{
+  background-color: #1fc175;
+}
 fieldset span {
   width: 100%;
   font-size: 1.5rem;
@@ -187,11 +194,20 @@ tr {
 }
 
 .table-info {
+  font-size: 1.5rem;
   padding: 1vh;
   border: 0.1vh solid white;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
+}
+
+.table-info-all {
+  font-size: 1.5rem;
+  padding: 1vh;
+  border: 0.1vh solid red;
+  cursor: pointer;
+  display: flex;
 }
 
 td {
@@ -205,7 +221,16 @@ td {
 }
 
 .icons {
-  width:12%;
+  width:3rem;
+  height: 3rem;
+  margin-right:2%;
+}
+.top-c{
+  width: 66.6%;
+}
+.icons2 {
+  width:5rem;
+  height: 5rem;
   margin-right:2%;
 }
 
@@ -252,6 +277,12 @@ li {
   max-height: 10%;
 }
 
+
+footer{
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 1.5rem;
+  color: white;
+}
 /* canvas styling */
 .background {
   position: absolute;

@@ -21,10 +21,10 @@ window.onload = function () {
     Particles.init({
         selector: ".background",
         sizeVariations: 5,
-        color: "#89CFF0",
+        color: "#dce6ed",
         connectParticles: true,
         maxParticles: 160,
-        minDistance: 90,
+        minDistance: 150,
         speed: 0.33
     });
 };
@@ -95,7 +95,7 @@ function registerAbout() {
 //generates html elements for generateTopTen() to append future td's
 function generateTopTenLayout() {
     $(".landing").hide().fadeIn().html(`
-        <section>
+        <section class="top-c">
             <h2 class="hidden">Top Ten List by 24 Hour Volume Subscriptions</h2>
                 <ul class="top-currencies">
                     <ul class="main-table">
@@ -144,7 +144,8 @@ function generateTopTen() {
             for (let i=0; i<responseJson.Data.length; i++) {
                 tableitems = tableitems.concat(`
                 <li class="table-info" id="${responseJson.Data[i].CoinInfo.Name}">
-                    <p class="cName"><a href="#"><img class="icons" src="${baseImageUrl}${responseJson.Data[i].CoinInfo.ImageUrl}">${responseJson.Data[i].CoinInfo.FullName}</a></p>
+                    <img class="icons" src="${baseImageUrl}${responseJson.Data[i].CoinInfo.ImageUrl}" alt="${responseJson.Data[i].CoinInfo.FullName} logo">
+                    <p class="cName"><a href="#">${responseJson.Data[i].CoinInfo.FullName}</a></p>
                     <p class="price">${responseJson.Data[i].DISPLAY.USD.PRICE}</p>
                     <p class="volume">${responseJson.Data[i].DISPLAY.USD.HIGHDAY}/${responseJson.Data[i].DISPLAY.USD.LOWDAY}</p>
                 </li>`);
@@ -195,7 +196,7 @@ function generateQuantity(arr) {
     const baseImageUrl = "https://www.cryptocompare.com/";
     for (let i=pageCounter; i<pageCounter+10; i++) {
         tableitems2 = tableitems2.concat(`
-            <li class="table-info" id="${arr[i].Name}"><a href="#"><img class = "icons" src="${baseImageUrl}${arr[i].ImageUrl}">${arr[i].FullName}</a></li>
+            <li class="table-info-all" id="${arr[i].Name}"><img class = "icons2" src="${baseImageUrl}${arr[i].ImageUrl}"><a href="#">${arr[i].FullName}</a></li>
             `);
     }
 
