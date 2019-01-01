@@ -26,15 +26,15 @@
             <form class="search-bar">
                 <fieldset>
                     <legend>Get some quick stats on a Cryptocurrency.</legend>
-                    <span>Ticker Symbol: <input class="search-term" type="text" placeholder="BTC..."></span>
-                    <span>Market: <input class="search-ex" type="text" placeholder="CCCAGG..."></span>
-                    <span>Currency:
+                    <label for="ticker">Ticker Symbol:</label> <input class="search-term" type="text" placeholder="BTC..." name="ticker">
+                    <label for="market">Market:</label><input class="search-ex" type="text" placeholder="CCCAGG...">
+                    <label for="exchange">Currency:</label>
                     <select class="search-xxx" name="exchange">
                         <option value="USD">USD</option>
                         <option value="EUR">EUR</option>
                         <option value="JPY">JPY</option>
                     </select>
-                    </span>
+    
                     <input class="search-btn" type="submit" value="Search">
                 </fieldset>
             </form>
