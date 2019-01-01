@@ -150,6 +150,7 @@ function generateTopTen() {
                     <p class="volume">${responseJson.Data[i].DISPLAY.USD.HIGHDAY}/${responseJson.Data[i].DISPLAY.USD.LOWDAY}</p>
                 </li>`);
             }
+            $(".table-currencies").html("");
             $(".top-currencies").hide().fadeIn().append(tableitems);
             $("h2.hidden").removeClass("hidden");
 

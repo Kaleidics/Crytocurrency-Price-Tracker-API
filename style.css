@@ -41,7 +41,7 @@ header .logo {
 }
 
 .nav-btn1, .nav-btn2, .about-btn {
-  padding: 1.5em;
+  padding:50px 1.5em 50px 1.5em;
   cursor: pointer;
 
 }
@@ -69,10 +69,11 @@ a{
 /* //////////////////////////////////////////////////////////////////////////////////// */
 /* landing page search styles//////////////////////////////////////////////////////////*/
 .search-bar {
-  height: 50%;
   width: 100%;
   display: flex;
   justify-content: center;
+  position: absolute;
+  top:20%;
 }
 
 fieldset {
@@ -135,6 +136,7 @@ select{
   width: 90%;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .landing section h2 {
