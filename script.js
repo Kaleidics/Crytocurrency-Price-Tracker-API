@@ -288,7 +288,7 @@ function generateResults(search, exchange, currency) {
             if (responseJson.DISPLAY.PRICE !== undefined){
             $(".landing").append(`<ul class="search-results"></ul>`);
             $(".search-results").append(`
-                <li>Market: ${responseJson.DISPLAY.MARKET}</li>
+                <li>Last Market: ${responseJson.DISPLAY.LASTMARKET}</li>
                 <li>Price: ${responseJson.DISPLAY.PRICE}</li>
                 <li>Open 24 Hour: ${responseJson.DISPLAY.OPEN24HOUR}</li>
                 <li>High 24 Hour: ${responseJson.DISPLAY.HIGH24HOUR}</li>

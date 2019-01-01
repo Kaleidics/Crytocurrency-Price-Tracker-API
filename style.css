@@ -22,7 +22,7 @@ body {
 
 /* header styles///////////////////////////////////////////////////////////////////////////*/
 header {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
 }
 
@@ -205,7 +205,7 @@ tr {
 .table-info-all {
   font-size: 1.5rem;
   padding: 1vh;
-  border: 0.1vh solid red;
+  border: 0.1vh solid white;
   cursor: pointer;
   display: flex;
 }
@@ -283,6 +283,20 @@ footer{
   font-size: 1.5rem;
   color: white;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* canvas styling */
 .background {
   position: absolute;
