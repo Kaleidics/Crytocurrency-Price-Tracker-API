@@ -82,11 +82,34 @@ function registerBackBtn() {
 function registerAbout() {
     $(".about-btn").on("click", function (event) {
         $(".landing").empty();
-        $(".landing").append(`<div class="about-page">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        $(".landing").append(`<div class="about-page">
+        <h2 class="about-txt">About</h2>
+            <p>This is a simple client-side application, using a CORS enabled API to track real time statistics of Cryptocurrencies.</p>
+            <p>If you are unfamiliar with Crytocurrencies, the search will default to the coin Bitcoin (BTC)</p>
+            <p>and to the market CCCAGG, which stands for CrytoCompare's aggregate of all the markets.</p>
+            <p>Here are some example coins and markets to search for:</p>
+            <h4 class="about-text">Coins</h4>
+                <ul>
+                    <li>NEO</li>
+                    <li>QTUM</li>
+                    <li>DOGE</li>
+                </ul>
+            <h4 class="about-txt">Markets</h4>
+                <ul>
+                    <li>Kraken</li>
+                    <li>Bitfinex</li>
+                    <li>Cexio</li>
+                </ul>
+            
+            <h3 class="about-txt">Technologies Used</h3>
+            <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>jQuery</li>
+                <li>CryptoCompare's API</li>
+                <li>particles.js Library</li>
+            </ul>
         </div>
 `);
     });
