@@ -1,52 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>CryptOracle</title>
-    <meta name="description" content="Search for quick Cryptocurrency statistics">
-    <link href="style.css" rel="stylesheet" type="text/css"/>
-    <link href="https://fonts.googleapis.com/css?family=Roboto|Share+Tech+Mono" rel="stylesheet">
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>CryptOracle</title>
+        <meta name="description" content="Search for quick Cryptocurrency statistics">
+        <link href="style.css" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Share+Tech+Mono" rel="stylesheet">
+    </head>
 
-<body>
-    <header role="banner">
-        <a href="#" class="logo"><img class="logo" src="https://i.imgur.com/JgI5Vgy.png" alt="CryptOracle Home"></a>
-        <div class="nav-btns">
-            <li><a href="#" class="nav-btn1">Top 10 Coins</a></li>
-            <li><a href="#" class="nav-btn2">All Coins</a></li>
-            <li><a href="#" class="about-btn">About</a></li>
+    <body>
+        <header role="banner">
+            <a href="#" class="logo"><img class="logo" src="https://i.imgur.com/JgI5Vgy.png" alt="CryptOracle Home"></a>
+            <div class="nav-btns">
+                <li><a href="#" class="nav-btn1">Top 10 Coins</a></li>
+                <li><a href="#" class="nav-btn2">All Coins</a></li>
+                <li><a href="#" class="about-btn">About</a></li>
             </div>
-    </header>
+        </header>
 
-    <main role="main">
-        <div class="landing">
-            <h1>Search for some quick stats on a Cryptocurrency</h1>
-            <form class="search-bar">
-                <fieldset>
-                    <label for="ticker">Ticker Symbol:</label> <input class="search-term" type="text" placeholder="BTC..." name="ticker">
-                    <label for="market">Market:</label><input class="search-ex" type="text" placeholder="CCCAGG...">
-                    <label for="exchange">Currency:</label>
-                    <select class="search-xxx" name="exchange">
-                        <option value="USD">USD</option>
-                        <option value="EUR">EUR</option>
-                        <option value="JPY">JPY</option>
-                    </select>
-    
-                    <input class="search-btn" type="submit" value="Search">
-                </fieldset>
-            </form>
-        </div>
-    </main>
+        <main role="main">
+            <div class="landing">
+                <h1>Search for some quick stats on a Cryptocurrency</h1>
+                <form class="search-bar">
+                    <fieldset>
+                        <label for="ticker">Ticker Symbol:</label> <input class="search-term" type="text" placeholder="BTC..." name="ticker">
+                        <label for="market">Market:</label><input class="search-ex" type="text" placeholder="CCCAGG...">
+                        <label for="exchange">Currency:</label>
+                        <select class="search-xxx" name="exchange">
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                            <option value="JPY">JPY</option>
+                        </select>
+                        <input class="search-btn" type="submit" value="Search">
+                    </fieldset>
+                </form>
+            </div>
+        </main>
 
-    <canvas class="background"></canvas>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.2/particles.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous"></script>
-    <script src="script.js"></script>
-</body>
+        <canvas class="background"></canvas>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.2/particles.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+        <script src="script.js"></script>
+    </body>
 
-<footer role="contentinfo" class="footer">© 2019 Eddie Chu</footer>
-
+    <footer role="contentinfo" class="footer">© 2019 Eddie Chu</footer>
 </html>

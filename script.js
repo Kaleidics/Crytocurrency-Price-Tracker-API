@@ -44,7 +44,7 @@ function reloadPage() {
 }
 
 /////////////////////////////////////EVENT HANDLERS/////////////////////////////////////
-//event for clicking back button on results page coming from a full search
+//event for clicking back button on results page coming from a main page search
 function reloadSearch() {
     $(".landing").on("click", ".refresh", function() {
         location.reload();
@@ -127,11 +127,9 @@ function registerEvents() {
 
         $(".landing").empty();
         
-        testnew(searchTerm, searchMarket, fCurrency);
+        generateResults(searchTerm, searchMarket, fCurrency);
         $(".landing").append(`<ul class="search-results"></ul>`);
         $(".search-results").html(`<div class="refresh"><a href="#"><- Search Again</a></div>`);
-        // generateResultsMedia(searchTerm);// endpoint that only gives the name
-        // generateResults(searchTerm, searchMarket, fCurrency);
     });
 }
 
@@ -152,9 +150,7 @@ function coinDetail() {
         let coinName = $(event.currentTarget).attr("id");
         console.log("value", coinName);
         $(".landing").append(`<ul class="search-results"></ul>`);
-        // generateResultsMedia(coinName);
-        // generateResults(coinName,"","USD");
-        testnew(coinName, "", "USD");
+        generateResults(coinName, "", "USD");
     });
 }
 
@@ -165,9 +161,7 @@ function coinDetail2() {
         let coinName = $(event.currentTarget).attr("id");
         console.log("value", coinName);
         $(".landing").append(`<ul class="search-results"></ul>`);
-        // generateResultsMedia(coinName);
-        // generateResults(coinName, "", "USD");
-        testnew(coinName, "", "USD");
+        generateResults(coinName, "", "USD");
     });
 }
 
@@ -296,85 +290,8 @@ function generateQuantity(arr) {
     window.scrollTo(0,0);
 }
 
-
-//generates statistics from Custom Average endpoint---old function refactored into testnew()
-// function generateResults(search, exchange, currency) {
-//     const searchUrl = "https://min-api.cryptocompare.com/data/generateAvg"
-//     if (exchange ==="") {
-//         exchange = "CCCAGG";
-//     }
-
-//     if (search==="") {
-//         search ="BTC";
-//     }
-
-//     let params = {
-//         fsym: search,
-//         tsym: currency,
-//         e: exchange,
-//         api_key: api_key1
-//     };
-
-//     const queryString = formatQueryParams(params);
-//     const url = searchUrl + "?" + queryString;
-
-//     return fetch(url)
-//         .then(function(response) {
-//             if (response.ok) {
-//                 return response.json();
-//             } throw new Error(response.statusText);
-//         })
-
-//         .then(function (responseJson) {
-//             if(backEnabled === true) {
-//             $(".landing").append(`<div class="back-btn"><a href="#"><- Back</a></div>`);
-//         }
-
-//             if (responseJson.DISPLAY.PRICE !== undefined) {
-//             $(".search-results").append(`
-//                 <li>Last Market: ${responseJson.DISPLAY.LASTMARKET}</li>
-//                 <li>Price: ${responseJson.DISPLAY.PRICE}</li>
-//                 <li>Open 24 Hour: ${responseJson.DISPLAY.OPEN24HOUR}</li>
-//                 <li>High 24 Hour: ${responseJson.DISPLAY.HIGH24HOUR}</li>
-//                 <li>Low 24 Hour: ${responseJson.DISPLAY.LOW24HOUR}</li>
-//                 <li>Change 24 Hour: ${responseJson.DISPLAY.CHANGE24HOUR}</li>
-//                 <li>Change Percent 24 Hour: ${responseJson.DISPLAY.CHANGEPCT24HOUR}%</li>
-//             `)} 
-            
-//             else{
-//                 $(".back-btn").append(`<div class="no-data"><h2>No Data</h2></div>`)
-//             }
-//         })
-//         .catch(error => console.log("1 error happened"));
-// }
-
-//generates name from seperate endpoint, only that endpoint contains fullname of search query----old function refactored in testnew()
-// function generateResultsMedia(search) {
-//     const searchUrl = "https://min-api.cryptocompare.com/data/all/coinlist"
-
-//     const url = searchUrl + "?" + api_key1;
-
-//     if (search == "") {
-//         search = "BTC"
-//     }
-
-//     return fetch(url)
-//         .then(function(response) {
-//             if (response.ok) {
-//                 return response.json();
-//             } throw new Error(response.statusText);
-//         })
-//         .then(function (responseJson) {
-//             // console.log("generateResultsMedia fired:", responseJson.Data[search].FullName);
-//             console.log("generateResultsMedia fired:", responseJson.Data);
-//             $(".search-results").append(`<li>${responseJson.Data[search].FullName}</li>`);
-//         })
-//         .catch(error => console.log(error));
-// }
-
-
 //Generates results for search submission, Top 10 li's click, All Coins li's click
-function testnew(search, exchange, currency){
+function generateResults(search, exchange, currency){
 
     const searchUrl = "https://min-api.cryptocompare.com/data/all/coinlist";
     const searchUrl2 = "https://min-api.cryptocompare.com/data/generateAvg";
@@ -438,9 +355,14 @@ function testnew(search, exchange, currency){
             $(".search-results").append(`<div class="no-data"><h2>No Data</h2></div>`)
         }
     })
-        .catch((error) => $(".search-results").append(`<div class="back-btn"><a href="#"><- Back</a></div><div>There is no data for the Coin: ${search} in Market: ${exchange}</div`));
+    .catch((error) => {
+        if(backEnabled === true){
+            $(".search-results").append(`<div class="back-btn"><a href="#"><- Back</a></div>`);
+            $(".search-results").append(`<div>There is no data for the Coin: ${search} in Market: ${exchange}</div`);
+        } else{
+            $(".search-results").append(`<div>There is no data for the Coin: ${search} in Market: ${exchange}</div`);}
+    });
 };
-
 
 function documentReady() {
     registerEvents();
