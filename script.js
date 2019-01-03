@@ -13,7 +13,7 @@ function formatQueryParams(params) {
 }
 
 //canvas settings for background
-window.onload = function () {
+window.onload = function() {
     Particles.init({
         selector: ".background",
         sizeVariations: 5,
@@ -27,7 +27,7 @@ window.onload = function () {
 
 //event for clicking "CryptOracle logo"
 function reloadPage() {
-    $(".logo").on("click", function () {
+    $(".logo").on("click", function() {
         location.reload();
     });
 }
@@ -35,14 +35,14 @@ function reloadPage() {
 /////////////////////////////////////EVENT HANDLERS/////////////////////////////////////
 //event for clicking back button on results page coming from a full search
 function reloadSearch() {
-    $(".landing").on("click", ".refresh", function () {
+    $(".landing").on("click", ".refresh", function() {
         location.reload();
     });
 }
 
 //event for clicking "Top 10 Coins"
 function registerNavbtnI() {
-    $(".nav-btn1").on("click",function(event) {
+    $(".nav-btn1").on("click", function(event) {
         $(this).prop("disabled", true);
         backEnabled = false;
         $(".landing").empty();
@@ -65,7 +65,7 @@ function registerNavbtnII() {
 
 //event for clicking "About"
 function registerAbout() {
-    $(".about-btn").on("click", function (event) {
+    $(".about-btn").on("click", function(event) {
         $(".landing").empty();
         $(".landing").append(`<div class="about-page">
         <h2 class="about-txt">About</h2>
@@ -74,18 +74,17 @@ function registerAbout() {
             <p>and to the market CCCAGG, which stands for CrytoCompare's aggregate of all the markets.</p>
             <p>Here are some example coins and markets to search for:</p>
             <h4 class="about-text">Coins</h4>
-                <ul>
-                    <li>NEO</li>
-                    <li>QTUM</li>
-                    <li>DOGE</li>
-                </ul>
+            <ul>
+                <li>NEO</li>
+                <li>QTUM</li>
+                <li>DOGE</li>
+            </ul>
             <h4 class="about-txt">Markets</h4>
-                <ul>
-                    <li>Kraken</li>
-                    <li>Bitfinex</li>
-                    <li>Cexio</li>
-                </ul>
-            
+            <ul>
+                <li>Kraken</li>
+                <li>Bitfinex</li>
+                <li>Cexio</li>
+            </ul>
             <h3 class="about-txt">Technologies Used</h3>
             <ul>
                 <li>HTML</li>
@@ -96,13 +95,13 @@ function registerAbout() {
                 <li>particles.js Library</li>
             </ul>
         </div>
-`);
+        `);
     });
 }
 
 //event for submitting a search on landing page
 function registerEvents() {
-    $(".search-bar").on("submit", function (event) {
+    $(".search-bar").on("submit", function(event) {
         event.preventDefault();
 
         let searchTerm = (($(".search-term").val()).toUpperCase());
@@ -125,7 +124,7 @@ function registerEvents() {
 
 //event for click back button on All Coins page
 function registerBackBtn() {
-    $(".landing").on("click", ".back-btn", function (event) {
+    $(".landing").on("click", ".back-btn", function(event) {
         $(this).prop("disabled", true);
         $(".landing").empty();
         generateAllCoinsLayout();
@@ -135,7 +134,7 @@ function registerBackBtn() {
 }
 //event for clicking a li in Top 10 Coins Page
 function coinDetail() {
-    $(".landing").on("click", "li.table-info", function (event) {
+    $(".landing").on("click", "li.table-info", function(event) {
         $(".landing").empty();
         let coinName = $(event.currentTarget).attr("id");
         console.log("value", coinName);
@@ -148,7 +147,7 @@ function coinDetail() {
 
 //event for clicking an li in All Coins page
 function coinDetail2() {
-    $(".landing").on("click", "li.table-info-all", function (event) {
+    $(".landing").on("click", "li.table-info-all", function(event) {
         $(".landing").empty();
         let coinName = $(event.currentTarget).attr("id");
         console.log("value", coinName);
@@ -161,7 +160,7 @@ function coinDetail2() {
 
 //register event for next button on All Coins
 function loadNextCoins() {
-    $(".landing").on("click", ".next-load", function (event) {
+    $(".landing").on("click", ".next-load", function(event) {
         $(".all-currencies").empty();
         pageCounter = pageCounter + 10;
         generateQuantity(dataArray);
@@ -170,7 +169,7 @@ function loadNextCoins() {
 
 //register event for previous button on All Coins
 function loadPreviousCoins() {
-    $(".landing").on("click", ".previous-load", function (event) {
+    $(".landing").on("click", ".previous-load", function(event) {
         $(".all-currencies").empty();
         pageCounter = pageCounter - 10;
         generateQuantity(dataArray);
@@ -197,7 +196,6 @@ function generateTopTenLayout() {
 function generateAllCoinsLayout() {
     $(".landing").hide().fadeIn().html(`
         <section class="all-coins">
-            <h2>All Coins</h2>
                 <ul class="all-currencies">
                     <h3 class="main-table">
                     </h3>
@@ -221,9 +219,8 @@ function generateTopTen() {
 
     return fetch(url)
     .then(function(response) {
-        if (response.ok) {
-            return response.json();
-        } throw new Error(response.statusText);
+        if (response.ok) return response.json();
+        throw new Error(response.statusText);
     })
     .then(function (responseJson) {
         let tableitems = "";
@@ -251,18 +248,17 @@ function generateAllCoins() {
     
     return fetch(searchUrl)
     .then(function (response) {
-        if (response.ok) {
-            return response.json();
-        } throw new Error(response.statusText);
+        if (response.ok) return response.json();
+        throw new Error(response.statusText);
     })
-    .then(function (responseJson) {
+    .then(function(responseJson) {
         dataArray = [];
         for (let key in responseJson.Data){
             dataArray.push(responseJson.Data[key]);
         }
         console.log("made it to generateQ");
         generateQuantity(dataArray);
-        })
+    })
     .catch(error => console.log("generateAllCoins failed",error));
 }
 
@@ -278,7 +274,7 @@ function generateQuantity(arr) {
     }
     
     if (pageCounter === 0) {
-        $(".all-currencies").hide().fadeIn().html(tableitems2);
+        $(".all-currencies").hide().fadeIn().html(`<h2>All Coins</h2>${tableitems2}`);
         $(".all-currencies").hide().fadeIn().append(`<div><a href="#" class="next-load">Next -></a></div>`);
     } else {
         $(".all-currencies").hide().fadeIn().append(tableitems2);
@@ -392,21 +388,17 @@ function testnew(search, exchange, currency){
     let response1, response2;
     
     fetch(url)
-    .then((response) => {
-        if (response.ok) {
-            return response.json();
-        }
+    .then(function(response) {
+        if (response.ok) {return response.json();}
     })
-    .then((responseJSON) => {
+    .then(function(responseJSON) {
         response1 = responseJSON;
         return fetch(url2);
     })
-    .then((response) => {
-        if (response.ok) {
-            return response.json();
-        }
+    .then(function(response) {
+        if (response.ok) {return response.json();}
     })
-    .then((responseJSON) => {
+    .then(function(responseJSON) {
         response2 = responseJSON;
         console.log("response1 success", response1);
         console.log("response2 success", response2.DISPLAY.PRICE);
