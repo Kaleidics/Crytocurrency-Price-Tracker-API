@@ -81,9 +81,9 @@ function registerAbout() {
         $(".landing").empty();
         $(".landing").append(`<div class="about-page">
         <h2 class="about-txt">About</h2>
-            <p>CryptOracle is a simple client-side application, using a CORS enabled API to track real time statistics of Cryptocurrencies.</p>
-            <p>If you are unfamiliar with Crytocurrencies, the search will default to the coin Bitcoin (BTC)</p>
-            <p>and to the market CCCAGG, which stands for CrytoCompare's aggregate of all the markets.</p>
+            <p>CryptOracle is a simple client-side application, using a CORS enabled API to track real time statistics of Cryptocurrencies.
+            If you are unfamiliar with Crytocurrencies, the search will default to the coin Bitcoin (BTC)
+            and to the market CCCAGG, which stands for CrytoCompare's aggregate of all the markets.</p>
             <p>Here are some example coins and markets to search for:</p>
             <h4 class="about-text">Coins</h4>
             <ul>
