@@ -21,7 +21,18 @@ window.onload = function() {
         connectParticles: true,
         maxParticles: 160,
         minDistance: 150,
-        speed: 0.33
+        speed: 0.33,
+        responsive: [
+            { breakpoint: 800,
+                options: {maxParticles: 80,}
+            },
+            {breakpoint: 400,
+                options: { maxParticles: 60,}
+            },
+            {breakpoint: 320,
+                options: {maxParticles: 20}
+            }
+        ]
     });
 };
 
@@ -44,6 +55,7 @@ function reloadSearch() {
 function registerNavbtnI() {
     $(".nav-btn1").on("click", function(event) {
         $(this).prop("disabled", true);
+        
         backEnabled = false;
         $(".landing").empty();
         generateTopTenLayout();
@@ -114,9 +126,10 @@ function registerEvents() {
         console.log("fcurrecny", fCurrency);
 
         $(".landing").empty();
-        $(".landing").html(`<div class="refresh"><a href="#"><- Back</a></div>`)
-        $(".landing").append(`<ul class="search-results"></ul>`);
+        
         testnew(searchTerm, searchMarket, fCurrency);
+        $(".landing").append(`<ul class="search-results"></ul>`);
+        $(".search-results").html(`<div class="refresh"><a href="#"><- Search Again</a></div>`);
         // generateResultsMedia(searchTerm);// endpoint that only gives the name
         // generateResults(searchTerm, searchMarket, fCurrency);
     });
@@ -236,7 +249,7 @@ function generateTopTen() {
             </li>`);
         }
         $(".table-currencies").html("");
-        $(".top-currencies").hide().fadeIn().append(tableitems);
+        $(".top-currencies").append(tableitems);
         $("h2.hidden").removeClass("hidden");
     })
     .catch(error => console.log("generateTopTen failed"));
@@ -390,6 +403,7 @@ function testnew(search, exchange, currency){
     fetch(url)
     .then(function(response) {
         if (response.ok) {return response.json();}
+        else{throw new Error(response.statusText);}
     })
     .then(function(responseJSON) {
         response1 = responseJSON;
@@ -397,6 +411,8 @@ function testnew(search, exchange, currency){
     })
     .then(function(response) {
         if (response.ok) {return response.json();}
+        else{throw new Error(response.statusText);}
+        
     })
     .then(function(responseJSON) {
         response2 = responseJSON;
@@ -409,20 +425,20 @@ function testnew(search, exchange, currency){
         if (response2.DISPLAY.PRICE != undefined) {
             console.log("made it to append2");
             $(".search-results").append(`
-            <li>Last Market: ${response2.DISPLAY.LASTMARKET}</li>
-            <li>Price: ${response2.DISPLAY.PRICE}</li>
-            <li>Open 24 Hour: ${response2.DISPLAY.OPEN24HOUR}</li>
-            <li>High 24 Hour: ${response2.DISPLAY.HIGH24HOUR}</li>
-            <li>Low 24 Hour: ${response2.DISPLAY.LOW24HOUR}</li>
-            <li>Change 24 Hour: ${response2.DISPLAY.CHANGE24HOUR}</li>
-            <li>Change Percent 24 Hour: ${response2.DISPLAY.CHANGEPCT24HOUR}%</li>
+            <li><span>Last Market:</span> <span>${response2.DISPLAY.LASTMARKET}<span></li>
+            <li><span>Price:</span> <span>${response2.DISPLAY.PRICE}</span></li>
+            <li><span>Open 24 Hour:</span> <span>${response2.DISPLAY.OPEN24HOUR}</span></li>
+            <li><span>High 24 Hour:</span> <span>${response2.DISPLAY.HIGH24HOUR}</span></li>
+            <li><span>Low 24 Hour:</span> <span>${response2.DISPLAY.LOW24HOUR}</span></li>
+            <li><span>Change 24 Hour:</span> <span>${response2.DISPLAY.CHANGE24HOUR}</span></li>
+            <li><span>Change Percent 24 Hour: </span><span>${response2.DISPLAY.CHANGEPCT24HOUR}%</span></li>
             `)
         }
         else {
             $(".search-results").append(`<div class="no-data"><h2>No Data</h2></div>`)
         }
     })
-    .catch((error) => console.log(error));
+        .catch((error) => $(".search-results").append(`<div class="back-btn"><a href="#"><- Back</a></div><div>There is no data for the Coin: ${search} in Market: ${exchange}</div`));
 };
 
 
