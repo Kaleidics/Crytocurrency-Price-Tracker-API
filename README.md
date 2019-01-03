@@ -1,4 +1,4 @@
-# Crytocurrency-tracker-api
+# Crytocurrency-Price-Tracker-API
 CryptOracle
 Link: https://kaleidics.github.io/Crytocurrency-tracker-api/#
 ![](assets/screenshot-landing.png)
