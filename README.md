@@ -5,11 +5,11 @@ Link: https://kaleidics.github.io/Crytocurrency-tracker-api/#
 
 <br/>
 This is application allows a user to search for basic statistics on a Cryptocurrency.
-It helps a user get a snapshot view of the most important details (price, highs, lows) of a Cryptocurrency in within a searched market within the last 24 hours.
+It helps a user get a snapshot view of the most important details (price, highs, lows) of a Cryptocurrency in a searched market within the last 24 hours.
 <br/>
 The statistics are fulfilled by CryptoCompare's API.<br/>
 
-Technology Used:<br/>
+Technologies Used:<br/>
 HTML<br/>
 CSS<br/>
 JavaScript<br/>
