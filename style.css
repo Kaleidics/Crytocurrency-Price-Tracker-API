@@ -53,12 +53,14 @@ header .logo {
 }
 
 .nav-btn1:hover, .nav-btn2:hover, .about-btn:hover, a.logo:hover {
+
   background-color: rgba(235, 235, 235, 0.1);
 }
-/* //////////////////////////////////// */
+
 li {
   color: white;
   list-style-type: none;
+
 }
 
 
