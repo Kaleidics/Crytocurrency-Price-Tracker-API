@@ -1,13 +1,9 @@
 "use strict";
 
-//cryptocurrency api
-const api_key1 ="960e428fdca399a09e41196327f5766b1f76aa979eec604f31318a4e0ac3f032";
-//contains an array of responseJson data from API endpoint AllCoins
-let dataArray;
-//counter for All Coins page's index in the array dataArray
-let pageCounter = 0;
-//boolean to switch on/off back button
-let backEnabled = false;
+const api_key1 = "960e428fdca399a09e41196327f5766b1f76aa979eec604f31318a4e0ac3f032";
+let dataArray; //container for an array of responseJson data from API endpoint All Coins
+let pageCounter = 0;//counter for All Coin Page's index in the array dataArray
+let backEnabled = false;// boolean to switch on/off button for different pages
 
 //formats parameters for urls
 function formatQueryParams(params) {
@@ -17,7 +13,7 @@ function formatQueryParams(params) {
 }
 
 //canvas settings for background
-window.onload = function () {
+window.onload = function() {
     Particles.init({
         selector: ".background",
         sizeVariations: 5,
@@ -25,34 +21,46 @@ window.onload = function () {
         connectParticles: true,
         maxParticles: 160,
         minDistance: 150,
-        speed: 0.33
+        speed: 0.33,
+        responsive: [
+            { breakpoint: 800,
+                options: {maxParticles: 80,}
+            },
+            {breakpoint: 400,
+                options: { maxParticles: 60,}
+            },
+            {breakpoint: 320,
+                options: {maxParticles: 20}
+            }
+        ]
     });
 };
 
 //event for clicking "CryptOracle logo"
 function reloadPage() {
-    $(".logo").on("click", function () {
+    $(".logo").on("click", function() {
         location.reload();
     });
-
 }
 
+/////////////////////////////////////EVENT HANDLERS/////////////////////////////////////
+//event for clicking back button on results page coming from a full search
 function reloadSearch() {
-    $(".landing").on("click", ".refresh", function () {
+    $(".landing").on("click", ".refresh", function() {
         location.reload();
     });
-
 }
 
 //event for clicking "Top 10 Coins"
 function registerNavbtnI() {
-    $(".nav-btn1").on("click",function(event) {
+    $(".nav-btn1").on("click", function(event) {
         $(this).prop("disabled", true);
+        
         backEnabled = false;
         $(".landing").empty();
         generateTopTenLayout();
         generateTopTen();
-    })
+    });
 }
 
 //event for clicking "All Coins"
@@ -64,43 +72,31 @@ function registerNavbtnII() {
         $(".landing").empty();
         generateAllCoinsLayout();
         generateAllCoins();
-    })
-
-}
-
-function registerBackBtn() {
-    $(".landing").on("click",".back-btn", function (event) {
-        $(this).prop("disabled", true);
-        $(".landing").empty();
-        generateAllCoinsLayout();
-        generateAllCoins();
-    })
-
+    });
 }
 
 //event for clicking "About"
 function registerAbout() {
-    $(".about-btn").on("click", function (event) {
+    $(".about-btn").on("click", function(event) {
         $(".landing").empty();
         $(".landing").append(`<div class="about-page">
         <h2 class="about-txt">About</h2>
-            <p>This is a simple client-side application, using a CORS enabled API to track real time statistics of Cryptocurrencies.</p>
+            <p>CryptOracle is a simple client-side application, using a CORS enabled API to track real time statistics of Cryptocurrencies.</p>
             <p>If you are unfamiliar with Crytocurrencies, the search will default to the coin Bitcoin (BTC)</p>
             <p>and to the market CCCAGG, which stands for CrytoCompare's aggregate of all the markets.</p>
             <p>Here are some example coins and markets to search for:</p>
             <h4 class="about-text">Coins</h4>
-                <ul>
-                    <li>NEO</li>
-                    <li>QTUM</li>
-                    <li>DOGE</li>
-                </ul>
+            <ul>
+                <li>NEO</li>
+                <li>QTUM</li>
+                <li>DOGE</li>
+            </ul>
             <h4 class="about-txt">Markets</h4>
-                <ul>
-                    <li>Kraken</li>
-                    <li>Bitfinex</li>
-                    <li>Cexio</li>
-                </ul>
-            
+            <ul>
+                <li>Kraken</li>
+                <li>Bitfinex</li>
+                <li>Cexio</li>
+            </ul>
             <h3 class="about-txt">Technologies Used</h3>
             <ul>
                 <li>HTML</li>
@@ -111,11 +107,90 @@ function registerAbout() {
                 <li>particles.js Library</li>
             </ul>
         </div>
-`);
+        `);
     });
 }
 
-//generates html elements for generateTopTen() to append future td's
+//event for submitting a search on landing page
+function registerEvents() {
+    $(".search-bar").on("submit", function(event) {
+        event.preventDefault();
+
+        let searchTerm = (($(".search-term").val()).toUpperCase());
+        console.log("search term", searchTerm);
+
+        let searchMarket = $(".search-ex").val();
+        console.log("market", searchMarket);
+
+        let fCurrency = $(".search-xxx").val();
+        console.log("fcurrecny", fCurrency);
+
+        $(".landing").empty();
+        
+        testnew(searchTerm, searchMarket, fCurrency);
+        $(".landing").append(`<ul class="search-results"></ul>`);
+        $(".search-results").html(`<div class="refresh"><a href="#"><- Search Again</a></div>`);
+        // generateResultsMedia(searchTerm);// endpoint that only gives the name
+        // generateResults(searchTerm, searchMarket, fCurrency);
+    });
+}
+
+//event for click back button on All Coins page
+function registerBackBtn() {
+    $(".landing").on("click", ".back-btn", function(event) {
+        $(this).prop("disabled", true);
+        $(".landing").empty();
+        generateAllCoinsLayout();
+        generateAllCoins();
+    })
+
+}
+//event for clicking a li in Top 10 Coins Page
+function coinDetail() {
+    $(".landing").on("click", "li.table-info", function(event) {
+        $(".landing").empty();
+        let coinName = $(event.currentTarget).attr("id");
+        console.log("value", coinName);
+        $(".landing").append(`<ul class="search-results"></ul>`);
+        // generateResultsMedia(coinName);
+        // generateResults(coinName,"","USD");
+        testnew(coinName, "", "USD");
+    });
+}
+
+//event for clicking an li in All Coins page
+function coinDetail2() {
+    $(".landing").on("click", "li.table-info-all", function(event) {
+        $(".landing").empty();
+        let coinName = $(event.currentTarget).attr("id");
+        console.log("value", coinName);
+        $(".landing").append(`<ul class="search-results"></ul>`);
+        // generateResultsMedia(coinName);
+        // generateResults(coinName, "", "USD");
+        testnew(coinName, "", "USD");
+    });
+}
+
+//register event for next button on All Coins
+function loadNextCoins() {
+    $(".landing").on("click", ".next-load", function(event) {
+        $(".all-currencies").empty();
+        pageCounter = pageCounter + 10;
+        generateQuantity(dataArray);
+    });
+}
+
+//register event for previous button on All Coins
+function loadPreviousCoins() {
+    $(".landing").on("click", ".previous-load", function(event) {
+        $(".all-currencies").empty();
+        pageCounter = pageCounter - 10;
+        generateQuantity(dataArray);
+    });
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//generates html elements for generateTopTen() to append future li's
 function generateTopTenLayout() {
     $(".landing").hide().fadeIn().html(`
         <section class="top-c">
@@ -130,11 +205,10 @@ function generateTopTenLayout() {
         </section>`)
 }
 
-//generates html elements for generateAllCoins() to append future td's
+//generates html elements for generateAllCoins() to append future li's
 function generateAllCoinsLayout() {
     $(".landing").hide().fadeIn().html(`
         <section class="all-coins">
-            <h2>All Coins</h2>
                 <ul class="all-currencies">
                     <h3 class="main-table">
                     </h3>
@@ -146,7 +220,7 @@ function generateAllCoinsLayout() {
 function generateTopTen() {
     const searchUrl = "https://min-api.cryptocompare.com/data/top/totalvolfull";//correct base url?
     const baseImageUrl = "https://www.cryptocompare.com/";
-
+    
     let params = {
         limit: "10",
         tsym: "USD",
@@ -157,136 +231,160 @@ function generateTopTen() {
     const url = searchUrl + "?" + queryString;
 
     return fetch(url)
-        .then(function(response) {
-            if (response.ok) {
-                return response.json();
-            } throw new Error(response.statusText);
-        })
-        .then(function (responseJson) {
-            let tableitems = "";
-            for (let i=0; i<responseJson.Data.length; i++) {
-                tableitems = tableitems.concat(`
-                <li class="table-info" id="${responseJson.Data[i].CoinInfo.Name}">
-                    <img class="icons" src="${baseImageUrl}${responseJson.Data[i].CoinInfo.ImageUrl}" alt="${responseJson.Data[i].CoinInfo.FullName} logo">
-                    <p class="cName"><a href="#">${responseJson.Data[i].CoinInfo.FullName}</a></p>
-                    <p class="price">${responseJson.Data[i].DISPLAY.USD.PRICE}</p>
-                    <p class="volume">${responseJson.Data[i].DISPLAY.USD.HIGHDAY}/${responseJson.Data[i].DISPLAY.USD.LOWDAY}</p>
-                </li>`);
-            }
-            $(".table-currencies").html("");
-            $(".top-currencies").hide().fadeIn().append(tableitems);
-            $("h2.hidden").removeClass("hidden");
+    .then(function(response) {
+        if (response.ok) return response.json();
+        throw new Error(response.statusText);
+    })
+    .then(function (responseJson) {
+        let tableitems = "";
+        for (let i=0; i<responseJson.Data.length; i++) {
+            tableitems = tableitems.concat(`
+            <li class="table-info" id="${responseJson.Data[i].CoinInfo.Name}">
 
-        })
-        .catch(error => console.log("generateTopTen failed"));
-}
+            <img class="icons" src="${baseImageUrl}${responseJson.Data[i].CoinInfo.ImageUrl}" alt="${responseJson.Data[i].CoinInfo.FullName}">
+            <p class="cName"><a href="#">${responseJson.Data[i].CoinInfo.FullName}</a></p>
+            <p class="price">${responseJson.Data[i].DISPLAY.USD.PRICE}</p>
+            <p class="volume">${responseJson.Data[i].DISPLAY.USD.HIGHDAY}/${responseJson.Data[i].DISPLAY.USD.LOWDAY}</p>
 
-//on click redirect to more detail results
-function coinDetail(){
-    $(".landing").on("click", "li.table-info", function(event){
-        $(".landing").empty();
-        let coinName = $(event.currentTarget).attr("id");
-        console.log("value",coinName);
-        generateResultsMedia(coinName);
-        generateResults(coinName,"","USD");
-    });
+            </li>`);
+        }
+        $(".table-currencies").html("");
+        $(".top-currencies").append(tableitems);
+        $("h2.hidden").removeClass("hidden");
+    })
+    .catch(error => console.log("generateTopTen failed"));
 }
 
 //fetch endpoint "all coin list"
 function generateAllCoins() {
     const searchUrl = "https://min-api.cryptocompare.com/data/all/coinlist";
-
+    
     return fetch(searchUrl)
-        .then(function (response) {
-            if (response.ok) {
-                return response.json();
-            } throw new Error(response.statusText);
-        })
-        .then(function (responseJson) {
-            dataArray = [];
-            for (let key in responseJson.Data){
-                dataArray.push(responseJson.Data[key]);
-            }
-            console.log("made it to generateQ");
-            generateQuantity(dataArray);
-        })
-        .catch(error => console.log("generateAllCoins failed",error));
-
+    .then(function (response) {
+        if (response.ok) return response.json();
+        throw new Error(response.statusText);
+    })
+    .then(function(responseJson) {
+        dataArray = [];
+        for (let key in responseJson.Data){
+            dataArray.push(responseJson.Data[key]);
+        }
+        console.log("made it to generateQ");
+        generateQuantity(dataArray);
+    })
+    .catch(error => console.log("generateAllCoins failed",error));
 }
 
 //generates list of All Coins by passing in array of objects from generateAllCoins
 function generateQuantity(arr) {
     let tableitems2 = "";
     const baseImageUrl = "https://www.cryptocompare.com/";
+    
     for (let i=pageCounter; i<pageCounter+10; i++) {
         tableitems2 = tableitems2.concat(`
-            <li class="table-info-all" id="${arr[i].Name}"><img class = "icons2" src="${baseImageUrl}${arr[i].ImageUrl}"><a href="#">${arr[i].FullName}</a></li>
-            `);
+        <li class="table-info-all" id="${arr[i].Name}"><img class = "icons2" src="${baseImageUrl}${arr[i].ImageUrl}"><a href="#">${arr[i].FullName}</a></li>
+        `);
     }
-
+    
     if (pageCounter === 0) {
-    $(".all-currencies").hide().fadeIn().html(tableitems2);
-    $(".all-currencies").hide().fadeIn().append(`<div><a href="#" class="next-load">Next -></a></div>`);
+        $(".all-currencies").hide().fadeIn().html(`<h2>All Coins</h2>${tableitems2}`);
+        $(".all-currencies").hide().fadeIn().append(`<div><a href="#" class="next-load">Next -></a></div>`);
     } else {
         $(".all-currencies").hide().fadeIn().append(tableitems2);
         $(".all-currencies").hide().fadeIn().append(`<div class="index-nav"><a href="#" class="previous-load"><- Previous </a><a href="#" class="next-load"> Next -></a></div>`);
     }
     window.scrollTo(0,0);
-    
 }
 
-//register event for next button on All Coins
-function loadNextCoins() {
-    $(".landing").on("click", ".next-load", function(event){
-        $(".all-currencies").empty();
-        pageCounter = pageCounter + 10;
-        generateQuantity(dataArray);
-    })
-}
 
-//register event for previous button on All Coins
-function loadPreviousCoins() {
-    $(".landing").on("click", ".previous-load", function (event) {
-        $(".all-currencies").empty();
-        pageCounter = pageCounter - 10;
-        generateQuantity(dataArray);
-    })
-}
+//generates statistics from Custom Average endpoint---old function refactored into testnew()
+// function generateResults(search, exchange, currency) {
+//     const searchUrl = "https://min-api.cryptocompare.com/data/generateAvg"
+//     if (exchange ==="") {
+//         exchange = "CCCAGG";
+//     }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//     if (search==="") {
+//         search ="BTC";
+//     }
 
-//event for submitting a search on landing page
-function registerEvents(){
-    $(".search-bar").on("submit", function(event) {
-        event.preventDefault();
-        
-        let searchTerm = (($(".search-term").val()).toUpperCase());
-        console.log("search term", searchTerm);
+//     let params = {
+//         fsym: search,
+//         tsym: currency,
+//         e: exchange,
+//         api_key: api_key1
+//     };
 
-        let searchMarket = $(".search-ex").val();
-        console.log("market", searchMarket);
+//     const queryString = formatQueryParams(params);
+//     const url = searchUrl + "?" + queryString;
 
-        let fCurrency = $(".search-xxx").val();
-        console.log("fcurrecny", fCurrency);
+//     return fetch(url)
+//         .then(function(response) {
+//             if (response.ok) {
+//                 return response.json();
+//             } throw new Error(response.statusText);
+//         })
 
-        $(".landing").empty();
-        $(".landing").html(`<div class="refresh"><a href="#"><- Back</a></div>`)
-        generateResultsMedia(searchTerm);// endpoint that only gives the name
-        generateResults(searchTerm, searchMarket, fCurrency);
+//         .then(function (responseJson) {
+//             if(backEnabled === true) {
+//             $(".landing").append(`<div class="back-btn"><a href="#"><- Back</a></div>`);
+//         }
 
-        
-    })
-}
+//             if (responseJson.DISPLAY.PRICE !== undefined) {
+//             $(".search-results").append(`
+//                 <li>Last Market: ${responseJson.DISPLAY.LASTMARKET}</li>
+//                 <li>Price: ${responseJson.DISPLAY.PRICE}</li>
+//                 <li>Open 24 Hour: ${responseJson.DISPLAY.OPEN24HOUR}</li>
+//                 <li>High 24 Hour: ${responseJson.DISPLAY.HIGH24HOUR}</li>
+//                 <li>Low 24 Hour: ${responseJson.DISPLAY.LOW24HOUR}</li>
+//                 <li>Change 24 Hour: ${responseJson.DISPLAY.CHANGE24HOUR}</li>
+//                 <li>Change Percent 24 Hour: ${responseJson.DISPLAY.CHANGEPCT24HOUR}%</li>
+//             `)} 
+            
+//             else{
+//                 $(".back-btn").append(`<div class="no-data"><h2>No Data</h2></div>`)
+//             }
+//         })
+//         .catch(error => console.log("1 error happened"));
+// }
 
-//generates statistics from Custom Average endpoint
-function generateResults(search, exchange, currency) {
-    const searchUrl = "https://min-api.cryptocompare.com/data/generateAvg"
-    if (exchange ==="") {
-        exchange = "CCCAGG";
+//generates name from seperate endpoint, only that endpoint contains fullname of search query----old function refactored in testnew()
+// function generateResultsMedia(search) {
+//     const searchUrl = "https://min-api.cryptocompare.com/data/all/coinlist"
+
+//     const url = searchUrl + "?" + api_key1;
+
+//     if (search == "") {
+//         search = "BTC"
+//     }
+
+//     return fetch(url)
+//         .then(function(response) {
+//             if (response.ok) {
+//                 return response.json();
+//             } throw new Error(response.statusText);
+//         })
+//         .then(function (responseJson) {
+//             // console.log("generateResultsMedia fired:", responseJson.Data[search].FullName);
+//             console.log("generateResultsMedia fired:", responseJson.Data);
+//             $(".search-results").append(`<li>${responseJson.Data[search].FullName}</li>`);
+//         })
+//         .catch(error => console.log(error));
+// }
+
+
+//Generates results for search submission, Top 10 li's click, All Coins li's click
+function testnew(search, exchange, currency){
+
+    const searchUrl = "https://min-api.cryptocompare.com/data/all/coinlist";
+    const searchUrl2 = "https://min-api.cryptocompare.com/data/generateAvg";
+
+    if (search === "") {
+        search = "BTC";
     }
 
-    if (search==="") {
-        search ="BTC";
+    if (exchange === "") {
+        exchange = "CCCAGG";
     }
 
     let params = {
@@ -294,61 +392,55 @@ function generateResults(search, exchange, currency) {
         tsym: currency,
         e: exchange,
         api_key: api_key1
-    };
+    }
 
     const queryString = formatQueryParams(params);
-    const url = searchUrl + "?" + queryString;
+    const url = searchUrl + "?" + api_key1;; //endpoint including only name
+    const url2 = searchUrl2 + "?" + queryString; //endpoint including statistics 
 
-    return fetch(url)
-        .then(function(response) {
-            if (response.ok) {
-                return response.json();
-            } throw new Error(response.statusText);
-        })
-
-        .then(function (responseJson) {
-            if(backEnabled === true){
-            $(".landing").append(`<div class="back-btn"><a href="#"><- Back</a></div>`);}
-            if (responseJson.DISPLAY.PRICE !== undefined){
-            $(".landing").append(`<ul class="search-results"></ul>`);
+    let response1, response2;
+    
+    fetch(url)
+    .then(function(response) {
+        if (response.ok) {return response.json();}
+        else{throw new Error(response.statusText);}
+    })
+    .then(function(responseJSON) {
+        response1 = responseJSON;
+        return fetch(url2);
+    })
+    .then(function(response) {
+        if (response.ok) {return response.json();}
+        else{throw new Error(response.statusText);}
+        
+    })
+    .then(function(responseJSON) {
+        response2 = responseJSON;
+        console.log("response1 success", response1);
+        console.log("response2 success", response2.DISPLAY.PRICE);
+        if (backEnabled === true) {
+            $(".search-results").append(`<div class="back-btn"><a href="#"><- Back</a></div>`);
+        }
+        $(".search-results").append(`<li>${response1.Data[search].FullName}</li>`);
+        if (response2.DISPLAY.PRICE != undefined) {
+            console.log("made it to append2");
             $(".search-results").append(`
-                <li>Last Market: ${responseJson.DISPLAY.LASTMARKET}</li>
-                <li>Price: ${responseJson.DISPLAY.PRICE}</li>
-                <li>Open 24 Hour: ${responseJson.DISPLAY.OPEN24HOUR}</li>
-                <li>High 24 Hour: ${responseJson.DISPLAY.HIGH24HOUR}</li>
-                <li>Low 24 Hour: ${responseJson.DISPLAY.LOW24HOUR}</li>
-                <li>Change 24 Hour: ${responseJson.DISPLAY.CHANGE24HOUR}</li>
-                <li>Change Percent 24 Hour: ${responseJson.DISPLAY.CHANGEPCT24HOUR}%</li>
-            `)} else{
-                $(".back-btn").append(`<div class="no-data"><h2>No Data</h2></div>`)
-            }
-        })
-        .catch(error => console.log("1 error happened"));
-}
+            <li><span>Last Market:</span> <span>${response2.DISPLAY.LASTMARKET}<span></li>
+            <li><span>Price:</span> <span>${response2.DISPLAY.PRICE}</span></li>
+            <li><span>Open 24 Hour:</span> <span>${response2.DISPLAY.OPEN24HOUR}</span></li>
+            <li><span>High 24 Hour:</span> <span>${response2.DISPLAY.HIGH24HOUR}</span></li>
+            <li><span>Low 24 Hour:</span> <span>${response2.DISPLAY.LOW24HOUR}</span></li>
+            <li><span>Change 24 Hour:</span> <span>${response2.DISPLAY.CHANGE24HOUR}</span></li>
+            <li><span>Change Percent 24 Hour: </span><span>${response2.DISPLAY.CHANGEPCT24HOUR}%</span></li>
+            `)
+        }
+        else {
+            $(".search-results").append(`<div class="no-data"><h2>No Data</h2></div>`)
+        }
+    })
+        .catch((error) => $(".search-results").append(`<div class="back-btn"><a href="#"><- Back</a></div><div>There is no data for the Coin: ${search} in Market: ${exchange}</div`));
+};
 
-//generates name from seperate endpoint, only that endpoint contains fullname of search query
-function generateResultsMedia(search) {
-    const searchUrl = "https://min-api.cryptocompare.com/data/all/coinlist"
-
-    const url = searchUrl + "?" + api_key1;
-
-    if(search ==""){
-        search = "BTC"
-    }
-    return fetch(url)
-        .then(function(response) {
-            if (response.ok) {
-                return response.json();
-            } throw new Error(response.statusText);
-        })
-
-        .then(function (responseJson) {
-            console.log("generateResultsMedia fired:", responseJson.Data[search].FullName);
-            $(".search-results").append(`<li>${responseJson.Data[search].FullName}</li>`);
-            
-        })
-        .catch(error => console.log(error));
-}
 
 function documentReady() {
     registerEvents();
@@ -360,6 +452,7 @@ function documentReady() {
     registerBackBtn();
     registerAbout();
     coinDetail();
+    coinDetail2();
     reloadPage();
 }
 

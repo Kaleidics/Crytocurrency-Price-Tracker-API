@@ -20,7 +20,6 @@ body {
   box-sizing: border-box;
 }
 
-/* header styles///////////////////////////////////////////////////////////////////////////*/
 header {
   background-color: rgba(0, 0, 0, 0.8);
   display: flex;
@@ -29,13 +28,16 @@ header {
 
 header .logo {
   width: 12vh;
-  height: 90%;
 }
 
+.index-nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Top 10 Coins All Coins About button styles */
 .nav-btns {
-  color: white;
   font-size: 1.5rem;
-  width: 80vh;
   display: flex;
   align-items: center;
   margin: 1vh;
@@ -43,18 +45,42 @@ header .logo {
 
 .nav-btn1, .nav-btn2, .about-btn {
   padding:50px 1.5em 50px 1.5em;
+}
+
+.nav-btn1, .nav-btn2, .about-btn,.search-btn, .previous-load, .next-load,.table-info, .table-info-all, .back-btn, .refresh{
   cursor: pointer;
-  text-align: center;
 
 }
+
 .nav-btn1:hover, .nav-btn2:hover, .about-btn:hover, a.logo:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+
+  background-color: rgba(235, 235, 235, 0.1);
 }
+
+li {
+  color: white;
+  list-style-type: none;
+
+}
+
+
 main {
   display: flex;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
   height: 86.25%;
+  align-items: center;
+}
+
+.landing {
+  width: 90%;
+}
+
+h1{
+  color: white;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
 }
 
 legend {
@@ -62,26 +88,18 @@ legend {
   font-size: 1.8rem;
 
 }
+
 a{
   color: white;
   text-decoration: none;
 }
-/* //////////////////////////////////////////////////////////////////////////////////// */
-/* landing page search styles//////////////////////////////////////////////////////////*/
-.search-bar {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  top:10%;
-}
-
+/* main search form styles /////////////////*/
 fieldset {
   width: 80%;
   border: 0;
-  display: flex;
-  justify-content: center;
+  margin: 0 auto;
 }
+
 fieldset * {
   color: white;
   font-size: 1.5rem;
@@ -90,45 +108,40 @@ fieldset * {
   text-align: center;
   margin-bottom:2vh;
 }
+
 option {
-   background-color: #262626;
+   background-color: rgb(38, 38, 38);
 }
 
-h1{
-  color: white;
-  font-size: 2.0rem;
-  font-weight: bold;
-}
-.hidden {
-  display: none;
-}
 input[type=text] {
   font-size: 2.0rem;
-  color: white;
-  background-color: transparent;
 }
+
 ::placeholder {
   color: white;
   opacity: 0.7;
 }
 .table-info:hover, .table-info-all:hover {
-  background-color: red;
+  background-color: rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
 }
+
 .search-term, .search-ex, .search-xxx, .search-btn {
   width: 33.3%;
   border-radius: 5px;
   height: 5vh;
   background-color: transparent;
-  font-size: 1.5rem;
-  color: white;
-  border: 2px solid #04548c;
+  border: 2px solid rgb(4, 84, 140);
 }
+
 .search-btn{
-  background-color: #04548c;
+  background-color: rgb(4, 84, 140);
 }
+
 .search-btn:hover{
-  background-color: #0293f7;
+  background-color: rgb(2, 147, 247);
 }
+
 fieldset span {
   width: 100%;
   font-size: 1.5rem;
@@ -142,14 +155,11 @@ select{
 .search-term {
   text-transform: uppercase;
 }
-/* /////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////// */
 
-
-.landing {
-  width: 90%;
-  display: flex;
-  justify-content: center;
-  position: relative;
+/* hide appended html element until promise ready */
+.hidden {
+  display: none;
 }
 
 .landing section h2 {
@@ -157,19 +167,12 @@ select{
   color:white;
 }
 
-
-/* All Coins page nav styles /////////////////////////////////////////////////////////*/
+/* next and previous buttons on All Coins */
 .previous-load, .next-load {
   font-size: 1.5rem;
   color: white;
-  cursor: pointer;
 }
 
-.index-nav {
-  display: flex;
-  justify-content: space-between;
-}
-/* /////////////////////////////////////////////////////////////////////////////////// */
 section.all-currencies {
   width: 80%;
   display: flex;
@@ -182,37 +185,31 @@ section.all-currencies {
 }
 
 .all-coins {
+  margin: 0 auto;
   min-width: 80%;
   max-width: 80%;
 }
+
 .main-table {
   padding: 0;
   font-size: 1.5rem;
-  color: white;
   display: flex;
   justify-content: space-between;
-  list-style-type: none;
 }
+
 ol {
   list-style-type: none;
 }
+
 .about-page {
   color: white;
   font-size: 1.5rem;
-}
-tr {
-  display: flex;
-  color: white;
-  font-size: 1.5rem;
-  margin-bottom: 1vh;
-  border-radius: 0.5vh;
 }
 
 .table-info {
   font-size: 1.5rem;
   padding: 1vh;
-  border: 0.1vh solid white;
-  cursor: pointer;
+  border: 2px solid #04548c;
   display: flex;
   justify-content: space-between;
 }
@@ -220,16 +217,11 @@ tr {
 .table-info-all {
   font-size: 1.5rem;
   padding: 1vh;
-  border: 0.1vh solid white;
-  cursor: pointer;
+  border: 2px solid #04548c;
   display: flex;
 }
 
-td {
-  width:100%;
-  max-width: 100%;
-}
-
+/* Top Ten Coins table */
 .cName {
   width: 33.3%;
   margin-left: 2%;
@@ -240,9 +232,11 @@ td {
   height: 3rem;
   margin-right:2%;
 }
+
 .top-c{
-  width: 66.6%;
+  margin: 0 auto;
 }
+
 .icons2 {
   width:5rem;
   height: 5rem;
@@ -261,23 +255,17 @@ td {
 }
 
 .top-currencies {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  list-style-type: none;
+  padding: 0;
 }
-li {
-  color: white;
-  list-style-type: none;
-}
+/* //////////////////////////// */
+/* search or click results style */
 .search-results {
   margin: 0 auto;
   color: white;
   font-size: 1.5rem;
-}
-
-.search-btn {
-  cursor: pointer;
+  text-align: center;
+  padding: 0;
+  width: 33.3%;
 }
 
 .no-data {
@@ -286,13 +274,12 @@ li {
 }
 
 .back-btn, .refresh {
-  cursor: pointer;
   font-size: 1.5rem;
-  color: white;
-  max-height: 10%;
+  text-align: center;
 }
 
 .about-page {
+  margin: 0 auto;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -300,6 +287,13 @@ li {
   font-family: 'Share Tech Mono', monospace;
 
 }
+
+ul.search-results li{
+  border: 2px solid #04548c;
+  margin: 2vh;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+/* //////////////////////// */
 footer{
   background-color: rgba(0, 0, 0, 0.5);
   font-size: 1.5rem;
@@ -307,17 +301,69 @@ footer{
 }
 
 
+/* media queries */
+@media(max-width:620px){
+  .nav-btns{
+    width: 100%;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin: 1vh 0 1vh 1vh;
+    align-items: flex-end;
+  }
 
+  .nav-btn1, .nav-btn2, .about-btn{
+  padding: 0 1vh 0 0;
+}
 
+.search-term, .search-ex, .search-xxx, .search-btn{
+  width: 66.67%;
+}
 
+.search-results{
+  width: 100%;
+}
 
+ul.search-results li {
+    width: 90%;
+    border: 2px solid #04548c;
+    margin: 1vh auto 1vh auto;
+    background-color: rgba(255, 255, 255, 0.1);
+}
 
+.icons2 {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 2%;
+}
 
+.all-currencies {
+    margin: 0 auto;
+    width: 100%;
+    padding: 0;
+}
 
+.table-info{
+  padding: 0;
+}
 
+}
 
+@media(max-width:370px){
+  .table-info{
+    font-size: 1.5rem;
+  }
 
+  .main-table{
+    font-size: 1.5rem;
+  }
 
+p.volume{
+  width: 65%;
+}
+
+}
 
 /* canvas styling */
 .background {
