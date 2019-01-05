@@ -37,15 +37,18 @@ header .logo {
 
 /* Top 10 Coins All Coins About button styles */
 .nav-btns {
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  margin: 1vh;
+font-size: 1.5rem;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    align-items: center;
 }
-.nav-3{
-  display: flex;
-  width: 100%;
+
+.imglogo {
+  height: 100%;
 }
+
 .nav-btn1, .nav-btn2, .about-btn {
   padding: 5vh;
 }
@@ -397,7 +400,12 @@ p.volume{
   animation: spin 2s linear infinite;
   position: absolute;
 }
-
+.navtest{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
