@@ -27,7 +27,7 @@ header {
 }
 
 header .logo {
-  width: 12vh;
+  height: 100%;
 }
 
 .index-nav {
@@ -42,7 +42,10 @@ header .logo {
   align-items: center;
   margin: 1vh;
 }
-
+.nav-3{
+  display: flex;
+  width: 100%;
+}
 .nav-btn1, .nav-btn2, .about-btn {
   padding: 5vh;
 }
@@ -52,7 +55,7 @@ header .logo {
 
 }
 
-.nav-btn1:hover, .nav-btn2:hover, .about-btn:hover, a.logo:hover {
+.nav-btn1:hover, .nav-btn2:hover, .about-btn:hover, .logo1:hover {
 
   background-color: rgba(235, 235, 235, 0.1);
 }
@@ -309,11 +312,16 @@ footer{
     font-size: 1.6rem;
     display: flex;
     justify-content: space-between;
-    flex-direction: column;
     margin: 1vh 0 1vh 1vh;
     align-items: flex-end;
   }
-
+.nav-3 {
+    text-align: right;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+}
   .nav-btn1, .nav-btn2, .about-btn{
   padding: 0 1vh 0 0;
 }
@@ -376,7 +384,9 @@ p.volume{
   opacity: 0.25;
 }
 
-
+.logo1 {
+  height: 100%
+}
 
 .loader {
   border: 16px solid #262626; 
