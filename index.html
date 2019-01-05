@@ -14,26 +14,29 @@
         <header role="banner">
             <a href="#" class="logo"><img class="logo" src="https://i.imgur.com/JgI5Vgy.png" alt="CryptOracle Home"></a>
             <div class="nav-btns">
-                <li><a href="#" class="nav-btn1">Top 10 Coins</a></li>
-                <li><a href="#" class="nav-btn2">All Coins</a></li>
-                <li><a href="#" class="about-btn">About</a></li>
+                <li><a href="#" class="nav-btn1" aria-controls="format">Top 10 Coins</a></li>
+                <li><a href="#" class="nav-btn2" aria-controls="format">All Coins</a></li>
+                <li><a href="#" class="about-btn" aria-controls="format">About</a></li>
             </div>
         </header>
 
         <main role="main">
-            <div class="landing">
+            <div class="loader loader-hidden"></div>
+            <div class="landing" id="format" aria-live="polite">
                 <h1>Search for some quick stats on a Cryptocurrency</h1>
-                <form class="search-bar">
+                <form role="form" class="search-bar">
                     <fieldset>
-                        <label for="ticker">Ticker Symbol:</label> <input class="search-term" type="text" placeholder="BTC..." name="ticker">
-                        <label for="market">Market:</label><input class="search-ex" type="text" placeholder="CCCAGG...">
+                        <label for="ticker">Ticker Symbol:</label> 
+                        <input class="search-term" type="text" placeholder="BTC..." name="ticker">
+                        <label for="market">Market:</label>
+                        <input class="search-ex" type="text" placeholder="CCCAGG...">
                         <label for="exchange">Currency:</label>
                         <select class="search-xxx" name="exchange">
                             <option value="USD">USD</option>
                             <option value="EUR">EUR</option>
                             <option value="JPY">JPY</option>
                         </select>
-                        <input class="search-btn" type="submit" value="Search">
+                        <input class="search-btn" type="submit" value="Search" aria-controls="format">
                     </fieldset>
                 </form>
             </div>

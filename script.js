@@ -55,7 +55,7 @@ function reloadSearch() {
 function registerNavbtnI() {
     $(".nav-btn1").on("click", function(event) {
         $(this).prop("disabled", true);
-        
+        $(".loader").removeClass("loader-hidden");
         backEnabled = false;
         $(".landing").empty();
         generateTopTenLayout();
@@ -67,6 +67,7 @@ function registerNavbtnI() {
 function registerNavbtnII() {
     $(".nav-btn2").on("click", function(event) {
         $(this).prop("disabled", true);
+        $(".loader").removeClass("loader-hidden");
         pageCounter = 0;
         backEnabled = true;
         $(".landing").empty();
@@ -115,6 +116,7 @@ function registerAbout() {
 function registerEvents() {
     $(".search-bar").on("submit", function(event) {
         event.preventDefault();
+        $(".loader").removeClass("loader-hidden");
 
         let searchTerm = (($(".search-term").val()).toUpperCase());
         console.log("search term", searchTerm);
@@ -129,7 +131,7 @@ function registerEvents() {
         
         generateResults(searchTerm, searchMarket, fCurrency);
         $(".landing").append(`<ul class="search-results"></ul>`);
-        $(".search-results").html(`<div class="refresh"><a href="#"><- Search Again</a></div>`);
+        $(".search-results").append(`<div class="refresh"><a href="#"><- Search Again</a></div>`);
     });
 }
 
@@ -147,6 +149,7 @@ function registerBackBtn() {
 function coinDetail() {
     $(".landing").on("click", "li.table-info", function(event) {
         $(".landing").empty();
+        $(".loader").removeClass("loader-hidden");
         let coinName = $(event.currentTarget).attr("id");
         console.log("value", coinName);
         $(".landing").append(`<ul class="search-results"></ul>`);
@@ -158,6 +161,7 @@ function coinDetail() {
 function coinDetail2() {
     $(".landing").on("click", "li.table-info-all", function(event) {
         $(".landing").empty();
+        $(".loader").removeClass("loader-hidden");
         let coinName = $(event.currentTarget).attr("id");
         console.log("value", coinName);
         $(".landing").append(`<ul class="search-results"></ul>`);
@@ -245,6 +249,7 @@ function generateTopTen() {
         $(".table-currencies").html("");
         $(".top-currencies").append(tableitems);
         $("h2.hidden").removeClass("hidden");
+        $(".loader").addClass("loader-hidden");
     })
     .catch(error => console.log("generateTopTen failed"));
 }
@@ -263,8 +268,8 @@ function generateAllCoins() {
         for (let key in responseJson.Data){
             dataArray.push(responseJson.Data[key]);
         }
-        console.log("made it to generateQ");
         generateQuantity(dataArray);
+        $(".loader").addClass("loader-hidden");
     })
     .catch(error => console.log("generateAllCoins failed",error));
 }
@@ -320,7 +325,7 @@ function generateResults(search, exchange, currency){
     fetch(url)
     .then(function(response) {
         if (response.ok) {return response.json();}
-        else{throw new Error(response.statusText);}
+        throw new Error(response.statusText);
     })
     .then(function(responseJSON) {
         response1 = responseJSON;
@@ -328,19 +333,15 @@ function generateResults(search, exchange, currency){
     })
     .then(function(response) {
         if (response.ok) {return response.json();}
-        else{throw new Error(response.statusText);}
-        
+        throw new Error(response.statusText);
     })
     .then(function(responseJSON) {
         response2 = responseJSON;
-        console.log("response1 success", response1);
-        console.log("response2 success", response2.DISPLAY.PRICE);
         if (backEnabled === true) {
             $(".search-results").append(`<div class="back-btn"><a href="#"><- Back</a></div>`);
         }
         $(".search-results").append(`<li>${response1.Data[search].FullName}</li>`);
         if (response2.DISPLAY.PRICE != undefined) {
-            console.log("made it to append2");
             $(".search-results").append(`
             <li><span>Last Market:</span> <span>${response2.DISPLAY.LASTMARKET}<span></li>
             <li><span>Price:</span> <span>${response2.DISPLAY.PRICE}</span></li>
@@ -354,6 +355,7 @@ function generateResults(search, exchange, currency){
         else {
             $(".search-results").append(`<div class="no-data"><h2>No Data</h2></div>`)
         }
+        $(".loader").addClass("loader-hidden");
     })
     .catch((error) => {
         if(backEnabled === true){
