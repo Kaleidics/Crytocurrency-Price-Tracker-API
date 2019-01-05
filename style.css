@@ -37,15 +37,18 @@ header .logo {
 
 /* Top 10 Coins All Coins About button styles */
 .nav-btns {
-font-size: 1.5rem;
+    font-size: 1.5rem;
     display: flex;
     margin: 0;
     padding: 0;
     width: 100%;
     align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
 }
 
 .imglogo {
+  width: 10%;
   height: 100%;
 }
 
@@ -365,7 +368,9 @@ ul.search-results li {
     height: 2rem;
     margin-right: 2%;
 }
-
+.imglogo{
+  width: 100%;
+}
 .all-currencies {
     margin: 0 auto;
     width: 100%;
@@ -383,11 +388,13 @@ ul.search-results li {
 
 }
 
-@media(max-width:370px){
+@media(max-width:430px){
   .table-info{
     font-size: 1.6rem;
   }
-
+.about-page{
+  width: 100%;
+}
   .main-table{
     font-size: 1.6rem;
   }
