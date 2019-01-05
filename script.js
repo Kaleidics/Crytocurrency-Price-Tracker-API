@@ -4,6 +4,7 @@ const api_key1 = "960e428fdca399a09e41196327f5766b1f76aa979eec604f31318a4e0ac3f0
 let dataArray; //container for an array of responseJson data from API endpoint All Coins
 let pageCounter = 0;//counter for All Coin Page's index in the array dataArray
 let backEnabled = false;// boolean to switch on/off button for different pages
+let searchEnabled = false;
 
 //formats parameters for urls
 function formatQueryParams(params) {
@@ -57,6 +58,7 @@ function registerNavbtnI() {
         $(this).prop("disabled", true);
         $(".loader").removeClass("loader-hidden");
         backEnabled = false;
+        searchEnabled = false;
         $(".landing").empty();
         generateTopTenLayout();
         generateTopTen();
@@ -70,6 +72,7 @@ function registerNavbtnII() {
         $(".loader").removeClass("loader-hidden");
         pageCounter = 0;
         backEnabled = true;
+        searchEnabled = false;
         $(".landing").empty();
         generateAllCoinsLayout();
         generateAllCoins();
@@ -116,6 +119,7 @@ function registerAbout() {
 function registerEvents() {
     $(".search-bar").on("submit", function(event) {
         event.preventDefault();
+        searchEnabled = true;
         $(".loader").removeClass("loader-hidden");
 
         let searchTerm = (($(".search-term").val()).toUpperCase());
@@ -129,9 +133,10 @@ function registerEvents() {
 
         $(".landing").empty();
         
-        generateResults(searchTerm, searchMarket, fCurrency);
+        
         $(".landing").append(`<ul class="search-results"></ul>`);
-        $(".search-results").append(`<div class="refresh"><a href="#"><- Search Again</a></div>`);
+        // $(".search-results").html(`<div class="refresh"><a href="#"><- Search Again</a></div>`);
+        generateResults(searchTerm, searchMarket, fCurrency);
     });
 }
 
@@ -339,6 +344,9 @@ function generateResults(search, exchange, currency){
         response2 = responseJSON;
         if (backEnabled === true) {
             $(".search-results").append(`<div class="back-btn"><a href="#"><- Back</a></div>`);
+        }
+        if (searchEnabled === true){
+            $(".search-results").html(`<div class="refresh"><a href="#"><- Search Again</a></div>`);
         }
         $(".search-results").append(`<li>${response1.Data[search].FullName}</li>`);
         if (response2.DISPLAY.PRICE != undefined) {
