@@ -374,6 +374,13 @@ function generateResults(search, exchange, currency){
     });
 };
 
+function nav(){
+   $("#toggle").on("click", function(event){
+       $(".nav-btns").toggleClass("responsive");
+       $(".new1").toggleClass("new");
+    });
+}
+
 function documentReady() {
     registerEvents();
     registerNavbtnI();
@@ -385,6 +392,7 @@ function documentReady() {
     registerAbout();
     coinDetail();
     coinDetail2();
+    nav();
     reloadPage();
 }
 
