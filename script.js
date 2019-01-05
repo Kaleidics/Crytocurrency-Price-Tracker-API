@@ -286,7 +286,7 @@ function generateQuantity(arr) {
     
     for (let i=pageCounter; i<pageCounter+10; i++) {
         tableitems2 = tableitems2.concat(`
-        <li class="table-info-all" id="${arr[i].Name}"><img class = "icons2" src="${baseImageUrl}${arr[i].ImageUrl}"><a href="#">${arr[i].FullName}</a></li>
+        <li class="table-info-all" id="${arr[i].Name}"><img class = "icons2" src="${baseImageUrl}${arr[i].ImageUrl}" alt="${arr[i].FullName}"><a href="#">${arr[i].FullName}</a></li>
         `);
     }
     
