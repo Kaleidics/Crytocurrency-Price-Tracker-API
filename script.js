@@ -56,6 +56,7 @@ function reloadSearch() {
 function registerNavbtnI() {
     $(".nav-btn1").on("click", function(event) {
         $(this).prop("disabled", true);
+        nav1();
         $(".loader").removeClass("loader-hidden");
         backEnabled = false;
         searchEnabled = false;
@@ -69,6 +70,7 @@ function registerNavbtnI() {
 function registerNavbtnII() {
     $(".nav-btn2").on("click", function(event) {
         $(this).prop("disabled", true);
+        nav1();
         $(".loader").removeClass("loader-hidden");
         pageCounter = 0;
         backEnabled = true;
@@ -83,6 +85,7 @@ function registerNavbtnII() {
 function registerAbout() {
     $(".about-btn").on("click", function(event) {
         $(".landing").empty();
+        nav1();
         $(".landing").append(`<div class="about-page">
         <h2 class="about-txt">About</h2>
             <p>CryptOracle is a simple client-side application, using a CORS enabled API to track real time statistics of Cryptocurrencies.
@@ -379,6 +382,11 @@ function nav(){
        $(".nav-btns").toggleClass("responsive");
        $(".new1").toggleClass("new");
     });
+}
+
+function nav1(){
+    $(".nav-btns").toggleClass("responsive");
+    $(".new1").toggleClass("new");
 }
 
 function documentReady() {
