@@ -194,6 +194,17 @@ function loadPreviousCoins() {
         generateQuantity(dataArray);
     });
 }
+
+function nav() {
+    $("#toggle").on("click", function (event) {
+        nav1();
+    });
+}
+
+function nav1() {
+    $(".nav-btns").toggleClass("responsive");
+    $(".new1").toggleClass("new");
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //generates html elements for generateTopTen() to append future li's
@@ -376,18 +387,6 @@ function generateResults(search, exchange, currency){
             $(".search-results").append(`<div>There is no data for the Coin: ${search} in Market: ${exchange}</div`);}
     });
 };
-
-function nav(){
-   $("#toggle").on("click", function(event){
-       $(".nav-btns").toggleClass("responsive");
-       $(".new1").toggleClass("new");
-    });
-}
-
-function nav1(){
-    $(".nav-btns").toggleClass("responsive");
-    $(".new1").toggleClass("new");
-}
 
 function documentReady() {
     registerEvents();
