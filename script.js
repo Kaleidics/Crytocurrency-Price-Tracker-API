@@ -204,6 +204,15 @@ function nav() {
 function nav1() {
     $(".nav-btns").toggleClass("responsive");
     $(".new1").toggleClass("new");
+    let xcon = $("#x-icon").attr("class");
+    if (xcon === "fas fa-3x fa-bars"){
+        $("#x-icon").removeClass("fa-bars");
+        $("#x-icon").addClass("fa-times");
+    } else {
+        $("#x-icon").removeClass("fa-times");
+        $("#x-icon").addClass("fa-bars");
+    }
+   
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
