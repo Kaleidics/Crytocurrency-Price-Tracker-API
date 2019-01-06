@@ -222,11 +222,7 @@ function generateTopTenLayout() {
         <section class="top-c">
             <h2 class="hidden">Top Ten List by 24 Hour Volume Subscriptions</h2>
                 <ul class="top-currencies">
-                    <ul class="main-table">
-                        <li>Name</li>
-                        <li>Price</li>
-                        <li>24Hr High/Low</li>
-                    </ul>
+                    
                 </ul>
         </section>`)
 }
@@ -274,8 +270,13 @@ function generateTopTen() {
 
             </li>`);
         }
+        const emptylist = `<ul class="main-table">
+                        <li>Name</li>
+                        <li>Price</li>
+                        <li>24Hr High/Low</li>
+                        </ul>`;
         $(".table-currencies").html("");
-        $(".top-currencies").append(tableitems);
+        $(".top-currencies").html(emptylist + tableitems);
         $("h2.hidden").removeClass("hidden");
         $(".loader").addClass("loader-hidden");
     })
