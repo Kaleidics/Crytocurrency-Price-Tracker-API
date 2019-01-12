@@ -360,7 +360,7 @@ function generateResults(search, exchange, currency){
     .then(function(responseJSON) {
         const {LASTMARKET, PRICE, OPEN24HOUR, HIGH24HOUR, LOW24HOUR, CHANGE24HOUR, CHANGEPCT24HOUR} = responseJSON.DISPLAY;
         if (backEnabled === true) {
-            $(".search-results").append(`<div class="back-btn"><a href="#"><- Back</a></div>`);
+            $(".search-results").html(`<div class="back-btn"><a href="#"><- Back</a></div>`);
         }
         if (searchEnabled === true){
             $(".search-results").html(`<div class="refresh"><a href="#"><- Search Again</a></div>`);
