@@ -132,8 +132,7 @@ function registerEvents() {
         let fCurrency = $(".search-xxx").val();
 
         $(".landing").empty();
-        $(".landing").append(`<ul class="search-results"></ul>`);
-        // $(".search-results").html(`<div class="refresh"><a href="#"><- Search Again</a></div>`);
+        $(".landing").append(`<div class="search-results"></div>`);
         generateResults(searchTerm, searchMarket, fCurrency);
     });
 }
@@ -156,7 +155,7 @@ function topTenDetail() {
 
         let coinName = $(event.currentTarget).attr("id");
 
-        $(".landing").append(`<ul class="search-results"></ul>`);
+        $(".landing").append(`<div class="search-results"></div>`);
         generateResults(coinName, "", "USD");
     });
 }
@@ -169,7 +168,7 @@ function allCoinDetail() {
 
         let coinName = $(event.currentTarget).attr("id");
 
-        $(".landing").append(`<ul class="search-results"></ul>`);
+        $(".landing").append(`<div class="search-results"></div>`);
         generateResults(coinName, "", "USD");
     });
 }
@@ -322,6 +321,7 @@ function generateResults(search, exchange, currency){
 
     const searchUrl = "https://min-api.cryptocompare.com/data/all/coinlist";
     const searchUrl2 = "https://min-api.cryptocompare.com/data/generateAvg";
+    const searchUrl3 = "https://min-api.cryptocompare.com/data/histohour";
 
     if (search === "") {
         search = "BTC";
@@ -338,9 +338,18 @@ function generateResults(search, exchange, currency){
         api_key: api_key1
     }
 
+    let params2 = {
+        fsym: search,
+        tsym: currency,
+        limit: "23",
+        api_key: api_key1
+    }
+
     const queryString = formatQueryParams(params);
+    const queryString2 = formatQueryParams(params2);
     const url = searchUrl + "?" + api_key1;; //endpoint including only name
     const url2 = searchUrl2 + "?" + queryString; //endpoint including statistics 
+    const url3 = searchUrl3 + "?" + queryString2; //endpoint for data graph
 
     let response1, response2;
     
@@ -358,6 +367,7 @@ function generateResults(search, exchange, currency){
         throw new Error(response.statusText);
     })
     .then(function(responseJSON) {
+        response2 = responseJSON;
         const {LASTMARKET, PRICE, OPEN24HOUR, HIGH24HOUR, LOW24HOUR, CHANGE24HOUR, CHANGEPCT24HOUR} = responseJSON.DISPLAY;
         if (backEnabled === true) {
             $(".search-results").html(`<div class="back-btn"><a href="#"><- Back</a></div>`);
@@ -365,24 +375,56 @@ function generateResults(search, exchange, currency){
         if (searchEnabled === true){
             $(".search-results").html(`<div class="refresh"><a href="#"><- Search Again</a></div>`);
         }
-        $(".search-results").append(`<li>${response1.Data[search].FullName}</li>`);
+        if (PRICE === undefined){
+            $(".search-results").append(`<li>${response1.Data[search].FullName}</li>`);
+        }
+
         if (PRICE != undefined) {
             $(".search-results").append(`
-            <li><span>Last Market:</span> <span>${LASTMARKET}<span></li>
-            <li><span>Price:</span> <span>${PRICE}</span></li>
-            <li><span>Open 24 Hour:</span> <span>${OPEN24HOUR}</span></li>
-            <li><span>High 24 Hour:</span> <span>${HIGH24HOUR}</span></li>
-            <li><span>Low 24 Hour:</span> <span>${LOW24HOUR}</span></li>
-            <li><span>Change 24 Hour:</span> <span>${CHANGE24HOUR}</span></li>
-            <li><span>Change Percent 24 Hour: </span> <span>${CHANGEPCT24HOUR}%</span></li>
+
+            <ul class="inner1">
+                <li>${response1.Data[search].FullName}</li>
+                <li><span>Last Market:</span> <span>${LASTMARKET}<span></li>
+                <li><span>Price:</span> <span>${PRICE}</span></li>
+            </ul>
+
+            <ul class="inner2">
+                <li><span>Open 24 Hour:</span> <span>${OPEN24HOUR}</span></li>
+                <li><span>High 24 Hour:</span> <span>${HIGH24HOUR}</span></li>
+                <li><span>Low 24 Hour:</span> <span>${LOW24HOUR}</span></li>
+            </ul>
+
+            <ul class="inner3">
+                <li><span>Change 24 Hour:</span> <span>${CHANGE24HOUR}</span></li>
+                <li><span>Change Percent 24 Hour: </span> <span>${CHANGEPCT24HOUR}%</span></li>
+            </ul>
             `)
-        }
-        else {
+        } else {
             $(".search-results").append(`<div class="no-data"><h2>No Data</h2></div>`)
+        }
+        return fetch(url3);
+    })
+    .then(function(response) {
+        if (response.ok) { return response.json(); }
+        throw new Error(response.statusText);
+    })
+    .then(function(responseJSON){
+        if (response2.DISPLAY.PRICE != undefined){
+            let label = [];
+            let data = [];
+            for (let i = 0; i < responseJSON.Data.length; i++){
+                label.push(responseJSON.Data[i].time);
+                data.push(responseJSON.Data[i].high);
+            }
+            $(".landing").append(`<div><canvas id="myChart"></canvas></div>`)
+            let labelTime = label.map(x => new Date(x*1000));
+            graphf(labelTime, data);
+            
         }
         $(".loader").addClass("loader-hidden");
     })
     .catch((error) => {
+        $(".loader").addClass("loader-hidden");
         if(backEnabled === true){
             $(".search-results").append(`<div class="back-btn"><a href="#"><- Back</a></div>`);
             $(".search-results").append(`<div>There is no data for the Coin: ${search} in Market: ${exchange}</div`);
@@ -390,6 +432,49 @@ function generateResults(search, exchange, currency){
             $(".search-results").append(`<div>There is no data for the Coin: ${search} in Market: ${exchange}</div`);}
     });
 };
+
+
+
+
+
+
+
+
+
+function graphf(labels, data){
+let ctx = document.getElementById("myChart").getContext('2d');
+let myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Hourly High Price',
+            data: data,
+            backgroundColor: [
+                'rgba(255, 0, 0, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,0,132,1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: false
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    display: false
+                }
+            }]
+        }
+    }
+});
+}
 
 function documentReady() {
     registerEvents();
@@ -404,6 +489,7 @@ function documentReady() {
     allCoinDetail();
     nav();
     reloadPage();
+
 }
 
 $(documentReady);

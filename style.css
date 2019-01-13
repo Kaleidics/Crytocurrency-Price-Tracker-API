@@ -12,12 +12,13 @@ html {
 }
 
 body {
-  background-image: url("./assets/bg_hifi.png");
-  background-size: cover;
-  background-repeat: no-repeat;
+  /* background-image: url("./assets/bg_hifi.png"); */
+  /* background-size: cover; */
+  /* background-repeat: no-repeat; */
   height: 100vh;
   margin: 0 auto;
   box-sizing: border-box;
+  background-color: #262626;
 }
 
 header {
@@ -270,12 +271,15 @@ ol {
 /* //////////////////////////// */
 /* search or click results style */
 .search-results {
-  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  width: 100%;
   color: white;
   font-size: 1.6rem;
   text-align: center;
   padding: 0;
-  width: 33.3%;
+  
 }
 
 .no-data {
@@ -284,6 +288,7 @@ ol {
 }
 
 .back-btn, .refresh {
+  position: absolute;
   font-size: 1.6rem;
   text-align: center;
 }
@@ -298,7 +303,7 @@ ol {
 
 }
 
-ul.search-results li{
+.search-results li{
   border: 2px solid #04548c;
   margin: 2vh;
   background-color: rgba(255, 255, 255, 0.1);
@@ -312,7 +317,9 @@ footer{
 li.icon{
   display: none;
 }
-
+ #myChart{
+  max-height: 50vh;
+ }
 /* media queries */
 @media(max-width:640px){
 
@@ -356,7 +363,7 @@ li.icon{
   width: 100%;
 }
 
-ul.search-results li {
+.search-results li {
     width: 90%;
     border: 2px solid #04548c;
     margin: 1vh auto 1vh auto;
